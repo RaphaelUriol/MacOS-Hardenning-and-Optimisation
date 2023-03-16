@@ -316,17 +316,7 @@ echo "[I] Turning on the PF firewall"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 sleep 2
 
-######################################################################################################################################
 
-
-
-
-
-
-
-
-echo -e "\t|- [\033[32m+\033[m] System tweaks / Disabled boot up 'ding' sound"
-sudo nvram SystemAudioVolume=" " >/dev/null
 
 
 echo -e "\t|- [\033[32m+\033[m] Security tweaks / Enabling scheduled updates"
@@ -358,7 +348,6 @@ defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server All
 
 echo -e "\t|- [\033[32m+\033[m] Security tweaks / Disable SSH access"
 launchctl unload -w /System/Library/LaunchDaemons/ssh.plist >/dev/null 2>/dev/null
-
 
 echo -e "\t|- [\033[32m+\033[m] Security tweaks / Enable gatekeeper"
 spctl --master-enable >/dev/null
@@ -392,6 +381,8 @@ defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 
+
+
 ######################################################################################################################################
 ######################################################################################################################################
 #              ||
@@ -399,6 +390,12 @@ defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 #              \/
 ######################################################################################################################################
 ######################################################################################################################################
+
+#THIS SECTION DISABLE DING SOUND
+
+echo -e "\t|- [\033[32m+\033[m] System tweaks / Disabled boot up 'ding' sound"
+sudo nvram SystemAudioVolume=" " >/dev/null
+
 
 echo "Disabling all animations."
 : 'Disables all finder animations, window animations, the docks launch animation, and changes the animation lengths.'
@@ -455,9 +452,6 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 echo -e "\t|- [\033[32m+\033[m] Developer tweaks / Show all file extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-
-
 
 
 
