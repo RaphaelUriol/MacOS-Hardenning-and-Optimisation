@@ -316,7 +316,7 @@ echo "[I] Turning on the PF firewall"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 sleep 2
 
-
+######################################################################################################################################
 
 
 echo -e "\t|- [\033[32m+\033[m] Security tweaks / Enabling scheduled updates"
