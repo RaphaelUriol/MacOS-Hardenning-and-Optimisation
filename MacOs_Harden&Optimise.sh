@@ -3,6 +3,7 @@
 # "Best of" from these projects : 
 # https://github.com/koconder/ostemper/blob/master/ostemper.sh
 # https://github.com/ayethatsright/MacOS-Hardening-Script/blob/master/hardening_script.sh
+# https://github.com/dotslashlevi/optimac/blob/main/optimac.sh
 
 # For Hardening and optimisation
 
