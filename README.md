@@ -1,6 +1,6 @@
 # MacOS-Hardenning-and-Optimisation
 
-Script o Harden MasOs Ventura 13.2.1
+Script to Harden and Optimise MasOs Ventura 13.2.1
 -------------------------------
 
 Hardening
