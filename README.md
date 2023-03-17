@@ -3,6 +3,7 @@
 Script to Harden and Optimise MasOs Ventura 13.2.1
 -------------------------------
 
+
 Hardening
 -------------------------------
 
@@ -44,7 +45,6 @@ Hardening
 - [x] Prevents any action when inserting a video dvd
 
 
-
 Firewall conf 
 -------------------------------
 
@@ -75,10 +75,8 @@ Firewall conf
 - [x] Turns the pf firewall on
 
 
-
 Optimisation
 -------------------------------
-
 
 - [x] Disable ding sound
 - [x] Disable all animations
