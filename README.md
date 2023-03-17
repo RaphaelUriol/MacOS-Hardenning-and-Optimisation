@@ -90,7 +90,8 @@ Optimisation
 - [x] Close printer when printing is finish
 - [x] Show language menu in top right corner of the boot screen
 - [x] Hide machine popups
-
+- [x] Reduce Motion & Transparency
+- [x] Disable Heavy login screen wallpaper
 
 
 - [ ] Disables siri
