@@ -1,11 +1,10 @@
 #!/bin/bash
 
-
-# "Best of des regles" prises sur ces projets : 
+# "Best of" from these projects : 
 # https://github.com/koconder/ostemper/blob/master/ostemper.sh
 # https://github.com/ayethatsright/MacOS-Hardening-Script/blob/master/hardening_script.sh
 
-# Pour Hardening et optimisation
+# For Hardening and optimisation
 
 
 ########################################################
