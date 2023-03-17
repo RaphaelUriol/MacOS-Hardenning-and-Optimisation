@@ -500,6 +500,23 @@ echo -e " Hide time machine popups"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 
+########################################################
+#  DISABLE HEAVY LOGIN SCREEN WALLPAPER
+########################################################
+echo " Disable Heavy login screen wallpaper"
+sudo defaults write /Library/Preferences/com.apple.loginwindow DesktopPicture ""
+
+########################################################
+#  REDUCE MOTION AND TRANSPARENCY
+########################################################
+echo " Reduce Motion & Transparency"
+defaults write com.apple.Accessibility DifferentiateWithoutColor -int 1
+defaults write com.apple.Accessibility ReduceMotionEnabled -int 1
+defaults write com.apple.universalaccess reduceMotion -int 1
+defaults write com.apple.universalaccess reduceTransparency -int 1
+defaults write com.apple.Accessibility ReduceMotionEnabled -int 1
+
+
 
 #  REBOOTS THE MACHINE SO THE SETTINGS CAN TAKE EFFECT - IT ADDS A KEYPRESS AS A PAUSE BEFORE CONTINUING WITH THE REBOOT
 
