@@ -4,6 +4,7 @@
 # https://github.com/koconder/ostemper/blob/master/ostemper.sh
 # https://github.com/ayethatsright/MacOS-Hardening-Script/blob/master/hardening_script.sh
 # https://github.com/dotslashlevi/optimac/blob/main/optimac.sh
+# https://github.com/sickcodes/osx-optimizer
 
 # For Hardening and optimisation
 
