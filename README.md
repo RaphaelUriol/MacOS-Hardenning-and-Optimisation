@@ -109,3 +109,4 @@ Optimisation
 
 > __Warning__ 
 
+This script does not guarantee to secure your Mac, it executes a non-exhaustive list of configurations that can significantly enhance the security of your machine. Other settings may be necessary in your particular case, and you are not immune to human error
