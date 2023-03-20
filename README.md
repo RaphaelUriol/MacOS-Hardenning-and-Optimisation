@@ -1,12 +1,12 @@
 # MacOS-Hardenning-and-Optimisation
 
-Script to Harden and Optimise MasOs Ventura 13.2.1
--------------------------------
-This is a All in One script that offers a selection of configurations for Hardening your Mac, and optimizing it.Ffeel free to comment on the parts you are not interested in. 
+## Script to Harden and Optimise MasOs Ventura 13.2.1
 
-Hardening
--------------------------------
-Disabling native Apple settings
+This is a All in One script that offers a selection of configurations for Hardening your Mac, and optimizing it. Feel free to comment on the parts you are not interested in. 
+
+## Hardening
+
+### Disabling native Apple settings
 
 - [x] Disables the infrared reciever
 - [x] Disables guest login access
@@ -23,7 +23,7 @@ Disabling native Apple settings
 - [x] Disables siri
 - [x] Disables Captive Portal
 
-Global Hardening
+### Global Hardening
 
 - [x] Prevents other applications from intercepting text typed in to terminal
 - [x] Prevents downloaded signed software from recieving incoming connections
@@ -46,7 +46,7 @@ Global Hardening
 - [x] Limits the number of authentication attempts before disconnecting the client
 - [x] Send do not track headre in safari
 
-CD Settings
+### CD Settings
 
 - [x] Prevents any action when inserting a blank cd
 - [x] Prevents any action when inserting a blank dvd
@@ -54,14 +54,13 @@ CD Settings
 - [x] Prevents any action when inserting a picture cd
 - [x] Prevents any action when inserting a video dvd
 
-FileVault
+### FileVault
 
 - [x] Enebles Filevault and set up a recovery key
 - [x] Remove the admin account from the filevault login screen
 
 
-Firewall conf 
--------------------------------
+## Firewall conf 
 
 - [x] Enables pfsense and configures some items
 - [x] Configures the firewall to block incoming apple file server
@@ -90,8 +89,7 @@ Firewall conf
 - [x] Turns the pf firewall on
 
 
-Optimisation
--------------------------------
+## Optimisation
 
 - [x] Disable ding sound
 - [x] Disable all animations
@@ -111,8 +109,8 @@ Optimisation
 
 This script does not guarantee to secure your Mac, it executes a non-exhaustive list of configurations that can significantly enhance the security of your machine. Other settings may be necessary in your particular case, and you are not immune to human error
 
+## Sources :
 
-Sources : 
 - [@koconder/ostemper](https://github.com/koconder/ostemper)
 - [@ayethatsright/MacOS-Hardening-Script](https://github.com/ayethatsright/MacOS-Hardening-Script)
 - [@dotslashlevi/optimac](https://github.com/dotslashlevi/optimac)
