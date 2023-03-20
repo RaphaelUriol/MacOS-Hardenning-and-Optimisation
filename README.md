@@ -2,7 +2,7 @@
 
 Script to Harden and Optimise MasOs Ventura 13.2.1
 -------------------------------
-
+This script offers a selection of configurations for Harden your Mac, feel free to comment on the parts you are not interested in. 
 
 Hardening
 -------------------------------
@@ -110,3 +110,12 @@ Optimisation
 > __Warning__ 
 
 This script does not guarantee to secure your Mac, it executes a non-exhaustive list of configurations that can significantly enhance the security of your machine. Other settings may be necessary in your particular case, and you are not immune to human error
+
+
+Sources : 
+- [@koconder/ostemper](https://github.com/koconder/ostemper)
+- [@ayethatsright/MacOS-Hardening-Script](https://github.com/ayethatsright/MacOS-Hardening-Script)
+- [@dotslashlevi/optimac](https://github.com/dotslashlevi/optimac)
+- [@sickcodes/osx-optimizer](https://github.com/sickcodes/osx-optimizer)
+- [@AtropineTears/TheMacHardeningScripts](https://github.com/AtropineTears/TheMacHardeningScripts)
+- [@wakedog/macos_scripts](https://github.com/wakedog/macos_scripts)
