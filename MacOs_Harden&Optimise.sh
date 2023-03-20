@@ -20,18 +20,104 @@
 ########################################################
 
 
-#---MetaData---#
-# Prohibits MAC OS X from creating temporary files on remote volumes
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+########################################################
+#DISABLe THE INFRARED RECIEVER
+########################################################
+echo " Disabling infrared receiver"
+defaults write com.apple.driver.AppleIRController DeviceEnabled -bool FALSE
 
-#---Captive Portal---#
-# Disables Captive Portal
+########################################################
+#  DISABLE GUSET LOGIN ACCESS
+########################################################
+echo -e " Disable guest login access"
+defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
+defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
+
+########################################################
+#  DISABLES THE FILE SHARING DAEMON
+########################################################
+echo " Disabling the filesharing daemon"
+launchctl disable system/com.apple.smbd; launchctl bootout system/com.apple.smbd; launchctl disable system/com.apple.AppleFileServer; launchctl bootout system/com.apple.AppleFileServer
+
+########################################################
+#  DISABLES NFS SERVER DAEMON
+########################################################
+echo " Disabling the NFS server daemon"
+launchctl disable system/com.apple.nfsd; launchctl bootout system/com.apple.nfsd; launchctl disable system/com.apple.lockd; launchctl bootout system/com.apple.lockd; launchctl disable system/com.apple.statd.notify; launchctl bootout system/com.apple.statd.notify
+
+########################################################
+#  DISABLES THE PUBLIC KEY AUTHENTICATION MECHANISM
+########################################################
+echo " Disabling the public key authentication mechanism for SSH"
+sed -i.bak 's/.*PubkeyAuthentication.*/PubkeyAuthentication no/' /etc/ssh/sshd_config
+
+########################################################
+#  DISABLE IPV6 ON WIFI AND ETHERNET
+########################################################
+echo -e " Disable IPV6 on Wi-fi and Ethernet adapters"
+#TODO: Scan all adapters and replicate
+networksetup -setv6off Wi-Fi >/dev/null
+networksetup -setv6off Ethernet >/dev/null
+
+########################################################
+#  DISABLE SSH ACCESS
+########################################################
+echo -e " Disable SSH access"
+launchctl unload -w /System/Library/LaunchDaemons/ssh.plist >/dev/null 2>/dev/null
+
+########################################################
+#  DISABLE POTENTIAL DNS LEAK
+########################################################
+echo -e " Disable potential DNS leaks"
+defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
+
+########################################################
+#  DISABLE APPLE REMOTE EVENTS
+########################################################
+echo -e " Disable Apple remote events"
+systemsetup -setremoteappleevents off >/dev/null 2>/dev/null
+
+########################################################
+#  DISABLE APPLE REMOTE AGENT AND REMOVE ACCESS
+########################################################
+echo -e " Disable Apple remote agent and remove access"
+/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off >/dev/null 2>/dev/null
+
+########################################################
+#  DISABLE AUTO SAVE TO ICLOUD FOR NEW DOCUMENTS
+########################################################
+echo -e " New documents disable auto-save to iCloud"
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+########################################################
+#  DISABLE SEARCH DATA LEAKING IN SAFARI
+########################################################
+echo -e "\t\- [\033[32m+\033[m] Security tweaks / Disable search data leaking in safari"
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
+
+########################################################
+#  DISABLES SIRI
+########################################################
+echo " Disabling Siri"
+defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
+sleep 2
+
+########################################################
+#  DISABLES CAPTIVE PORTALS
+########################################################
 defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
 
 
 
+
+########################################################
+#  PROHIBITS MAC OS FROM CREATING TEMPORARY FILES ON REMOTE VOLUMES
+########################################################
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 ########################################################
 #  TURNS OFF THE ICLOUD LOGIN PROMPT
@@ -40,12 +126,6 @@ echo " Turning off iCloud login prompt"
 defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "10.12"
-
-########################################################
-#DISABLING THE INFRARED RECIEVER
-########################################################
-echo " Disabling infrared receiver"
-defaults write com.apple.driver.AppleIRController DeviceEnabled -bool FALSE
 
 ########################################################
 #ENABLE AUTOMATIC UPDATES
@@ -126,13 +206,6 @@ echo " Removing the list of users from the login screen"
 defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -int 1
 
 ########################################################
-#  DISABLE GUSET LOGIN ACCESS
-########################################################
-echo -e " Disable guest login access"
-defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
-defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
-
-########################################################
 #  TURNS ON FILE EXTENSIONS
 ########################################################
 echo " Turning on file extensions which are hidden by default"
@@ -151,28 +224,10 @@ echo " Preventing signed downloads from recieving incoming connections"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
 
 ########################################################
-#  DISABLES THE FILE SHARING DAEMON
-########################################################
-echo " Disabling the filesharing daemon"
-launchctl disable system/com.apple.smbd; launchctl bootout system/com.apple.smbd; launchctl disable system/com.apple.AppleFileServer; launchctl bootout system/com.apple.AppleFileServer
-
-########################################################
 #  PREVENTS THE COMPUTER FROM BROADCASTING BONJOUR SERVICE ADVERTS
 ########################################################
 echo " Preventing the computer from broadcasting Bonjour service advertisements"
 defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
-
-########################################################
-#  DISABLES NFS SERVER DAEMON
-########################################################
-echo " Disabling the NFS server daemon"
-launchctl disable system/com.apple.nfsd; launchctl bootout system/com.apple.nfsd; launchctl disable system/com.apple.lockd; launchctl bootout system/com.apple.lockd; launchctl disable system/com.apple.statd.notify; launchctl bootout system/com.apple.statd.notify
-
-########################################################
-#  DISABLES THE PUBLIC KEY AUTHENTICATION MECHANISM
-########################################################
-echo " Disabling the public key authentication mechanism for SSH"
-sed -i.bak 's/.*PubkeyAuthentication.*/PubkeyAuthentication no/' /etc/ssh/sshd_config
 
 ########################################################
 #  PREVENTS ROOT LOGIN VIA SSH
@@ -187,63 +242,13 @@ echo " Setting the number of authentication attempts before disconnecting the cl
 sed -i.bak 's/.*maxAuthTries.*/maxAuthTries 4/' /etc/ssh/sshd_config
 
 ########################################################
-#  DISABLE IPV6 ON WIFI AND ETHERNET
-########################################################
-echo -e " Disable IPV6 on Wi-fi and Ethernet adapters"
-#TODO: Scan all adapters and replicate
-networksetup -setv6off Wi-Fi >/dev/null
-networksetup -setv6off Ethernet >/dev/null
-
-########################################################
-#  DISABLE SSH ACCESS
-########################################################
-echo -e " Disable SSH access"
-launchctl unload -w /System/Library/LaunchDaemons/ssh.plist >/dev/null 2>/dev/null
-
-########################################################
 #  SEND DO NOT TRACK HEADRE IN SAFARI
 ########################################################
 echo -e " Send 'Do Not Track' header in Safari"
 defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
 
-########################################################
-#  DISABLE POTENTIAL DNS LEAK
-########################################################
-echo -e " Disable potential DNS leaks"
-defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 
-########################################################
-#  DISABLE APPLE REMOTE EVENTS
-########################################################
-echo -e " Disable Apple remote events"
-systemsetup -setremoteappleevents off >/dev/null 2>/dev/null
 
-########################################################
-#  DISABLE APPLE REMOTE AGENT AND REMOVE ACCESS
-########################################################
-echo -e " Disable Apple remote agent and remove access"
-/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off >/dev/null 2>/dev/null
-
-########################################################
-#  DISABLE AUTO SAVE TO ICLOUD FOR NEW DOCUMENTS
-########################################################
-echo -e " New documents disable auto-save to iCloud"
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
-########################################################
-#  DISABLE SEARCH DATA LEAKING IN SAFARI
-########################################################
-echo -e "\t\- [\033[32m+\033[m] Security tweaks / Disable search data leaking in safari"
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
-
-########################################################
-#  DISABLES SIRI
-########################################################
-echo " Disabling Siri"
-defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
-sleep 2
 
 
 ########################################################
@@ -275,6 +280,8 @@ defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.c
 ########################################################
 echo " Preventing any actions when a DVD containing video is inserted"
 defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.dvd.video.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+
 
 
 
