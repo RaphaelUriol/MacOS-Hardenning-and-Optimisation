@@ -239,6 +239,12 @@ defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 
 
+########################################################
+#  DISABLES SIRI
+########################################################
+echo " Disabling Siri"
+defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
+sleep 2
 
 ########################################################
 #  PREVENTS ANY ACTION WHEN INSERTING A BLANK CD
@@ -515,11 +521,3 @@ read -r -p " The machine will now reboot to enable the hardening to take effect.
 sudo reboot
 done
 
-
-
-#########################################################
-##  DISABLES SIRI
-#########################################################
-#echo " Disabling Siri"
-#defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
-#sleep 2
