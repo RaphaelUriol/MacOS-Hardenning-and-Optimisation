@@ -21,13 +21,13 @@
 
 
 ########################################################
-#DISABLe THE INFRARED RECIEVER
+#DISABLES THE INFRARED RECIEVER
 ########################################################
 echo " Disabling infrared receiver"
 defaults write com.apple.driver.AppleIRController DeviceEnabled -bool FALSE
 
 ########################################################
-#  DISABLE GUSET LOGIN ACCESS
+#  DISABLES GUSET LOGIN ACCESS
 ########################################################
 echo -e " Disable guest login access"
 defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
@@ -52,7 +52,7 @@ echo " Disabling the public key authentication mechanism for SSH"
 sed -i.bak 's/.*PubkeyAuthentication.*/PubkeyAuthentication no/' /etc/ssh/sshd_config
 
 ########################################################
-#  DISABLE IPV6 ON WIFI AND ETHERNET
+#  DISABLES IPV6 ON WIFI AND ETHERNET
 ########################################################
 echo -e " Disable IPV6 on Wi-fi and Ethernet adapters"
 #TODO: Scan all adapters and replicate
@@ -60,37 +60,37 @@ networksetup -setv6off Wi-Fi >/dev/null
 networksetup -setv6off Ethernet >/dev/null
 
 ########################################################
-#  DISABLE SSH ACCESS
+#  DISABLES SSH ACCESS
 ########################################################
 echo -e " Disable SSH access"
 launchctl unload -w /System/Library/LaunchDaemons/ssh.plist >/dev/null 2>/dev/null
 
 ########################################################
-#  DISABLE POTENTIAL DNS LEAK
+#  DISABLES POTENTIAL DNS LEAK
 ########################################################
 echo -e " Disable potential DNS leaks"
 defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 
 ########################################################
-#  DISABLE APPLE REMOTE EVENTS
+#  DISABLES APPLE REMOTE EVENTS
 ########################################################
 echo -e " Disable Apple remote events"
 systemsetup -setremoteappleevents off >/dev/null 2>/dev/null
 
 ########################################################
-#  DISABLE APPLE REMOTE AGENT AND REMOVE ACCESS
+#  DISABLES APPLE REMOTE AGENT AND REMOVE ACCESS
 ########################################################
 echo -e " Disable Apple remote agent and remove access"
 /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -configure -access -off >/dev/null 2>/dev/null
 
 ########################################################
-#  DISABLE AUTO SAVE TO ICLOUD FOR NEW DOCUMENTS
+#  DISABLES AUTO SAVE TO ICLOUD FOR NEW DOCUMENTS
 ########################################################
 echo -e " New documents disable auto-save to iCloud"
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 ########################################################
-#  DISABLE SEARCH DATA LEAKING IN SAFARI
+#  DISABLES SEARCH DATA LEAKING IN SAFARI
 ########################################################
 echo -e "\t\- [\033[32m+\033[m] Security tweaks / Disable search data leaking in safari"
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
@@ -111,105 +111,10 @@ defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.contro
 
 
 
+########################################################################################################################
+########################################################################################################################
 
 
-########################################################
-#  PROHIBITS MAC OS FROM CREATING TEMPORARY FILES ON REMOTE VOLUMES
-########################################################
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-
-########################################################
-#  TURNS OFF THE ICLOUD LOGIN PROMPT
-########################################################
-echo " Turning off iCloud login prompt"
-defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
-defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
-defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "10.12"
-
-########################################################
-#ENABLE AUTOMATIC UPDATES
-########################################################
-echo " Enabling Scheduled updates"
-softwareupdate --schedule on
-defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
-defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true
-
-########################################################
-#  CHECK APP UPDATES EVERY DAY INSTEADE OF ONCE A WEEK
-########################################################
-echo -e " Check for App Updates daily, not just once a week"
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-
-########################################################
-#  TURNS OFF PASSWORD HINTS
-########################################################
-echo " Disabling password hints on the lock screen"
-defaults write com.apple.loginwindow RetriesUntilHint -int 0
-
-########################################################
-#  SETS THE SCREENLOCK TIMEOUT
-########################################################
-echo " Enabling password-protected screen lock after 5 minutes"
-systemsetup -setdisplaysleep 5
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-########################################################
-#  SETS THE FIREWALL
-########################################################
-echo " Enabling Firewall"
-/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
-/usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
-/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-
-########################################################
-#  SETS THE FIRMWARE PASSWORD
-########################################################
-echo " Setting the firmware password"
-firmwarepasswd -setpasswd
-
-########################################################
-#  ENABLE GATEKEEPER
-########################################################
-spctl --master-enable
-echo " Gatekeeper is now enabled"
-
-########################################################
-#  REMOVE HARMFULL SOFTWARES
-########################################################
-
-if ConfirmExecution "Do you want to scan for and remove harmful software?"; then
-    # Use Malwarebytes to scan for and remove harmful software
-    sudo /Library/Application\ Support/Malwarebytes/MBAM/mbam
-fi
-
-########################################################
-#  STOP SENDING OF DIAGNOSTIC INFO TO APPLE
-########################################################
-echo " Stopping this machine from sending diagnostic info to Apple"
-defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist AutoSubmit -bool FALSE
-defaults write com.apple.CrashReporter DialogType none
-
-########################################################
-#  RESTRICT SUDO TO A SINGLE COMMAND
-########################################################
-echo " Restricting sudo authentication to a single command"
-sed -i.bk 's/^Defaults[[:blank:]]timestamp_timeout.*$//' /etc/sudoers; echo "Defaults timestamp_timeout=0">>/etc/sudoers; rm /etc/sudoers.bk
-
-########################################################
-#  REMOVE THE LIST OF USERS FROM THE LOGIN SCREEN
-########################################################
-echo " Removing the list of users from the login screen"
-defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -int 1
-
-########################################################
-#  TURNS ON FILE EXTENSIONS
-########################################################
-echo " Turning on file extensions which are hidden by default"
-defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
 
 ########################################################
 #  PREVENTS OTHER APPLICATIONS FROM INTERCEPTING TEXT TYPED IN TO TERMINAL
@@ -236,6 +141,104 @@ echo " Preventing root login via SSH"
 sed -i.bak 's/.*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
 
 ########################################################
+#  SETS THE SCREENLOCK TIMEOUT
+########################################################
+echo " Enabling password-protected screen lock after 5 minutes"
+systemsetup -setdisplaysleep 5
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+########################################################
+#  SETS THE FIREWALL
+########################################################
+echo " Enabling Firewall"
+/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+
+########################################################
+#  SETS THE FIRMWARE PASSWORD
+########################################################
+echo " Setting the firmware password"
+firmwarepasswd -setpasswd
+
+########################################################
+#  REMOVE THE LIST OF USERS FROM THE LOGIN SCREEN
+########################################################
+echo " Removing the list of users from the login screen"
+defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -int 1
+
+########################################################
+#  REMOVE HARMFULL SOFTWARES
+########################################################
+
+if ConfirmExecution "Do you want to scan for and remove harmful software?"; then
+    # Use Malwarebytes to scan for and remove harmful software
+    sudo /Library/Application\ Support/Malwarebytes/MBAM/mbam
+fi
+
+########################################################
+#  PROHIBITS MAC OS FROM CREATING TEMPORARY FILES ON REMOTE VOLUMES
+########################################################
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+########################################################
+#  TURNS OFF THE ICLOUD LOGIN PROMPT
+########################################################
+echo " Turning off iCloud login prompt"
+defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
+defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "10.12"
+
+########################################################
+#  TURNS OFF PASSWORD HINTS
+########################################################
+echo " Disabling password hints on the lock screen"
+defaults write com.apple.loginwindow RetriesUntilHint -int 0
+
+########################################################
+#  TURNS ON FILE EXTENSIONS
+########################################################
+echo " Turning on file extensions which are hidden by default"
+defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
+
+########################################################
+#ENABLE AUTOMATIC UPDATES
+########################################################
+echo " Enabling Scheduled updates"
+softwareupdate --schedule on
+defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
+defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
+defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
+defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true
+
+########################################################
+#  ENABLE GATEKEEPER
+########################################################
+spctl --master-enable
+echo " Gatekeeper is now enabled"
+
+########################################################
+#  CHECK APP UPDATES EVERY DAY INSTEAD OF ONCE A WEEK
+########################################################
+echo -e " Check for App Updates daily, not just once a week"
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+########################################################
+#  STOP SENDING OF DIAGNOSTIC INFO TO APPLE
+########################################################
+echo " Stopping this machine from sending diagnostic info to Apple"
+defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist AutoSubmit -bool FALSE
+defaults write com.apple.CrashReporter DialogType none
+
+########################################################
+#  RESTRICT SUDO TO A SINGLE COMMAND
+########################################################
+echo " Restricting sudo authentication to a single command"
+sed -i.bk 's/^Defaults[[:blank:]]timestamp_timeout.*$//' /etc/sudoers; echo "Defaults timestamp_timeout=0">>/etc/sudoers; rm /etc/sudoers.bk
+
+########################################################
 #  LIMITS THE NUMBER OF AUTHENTICATION ATTEMPTS BEFORE DISCONNECTING THE CLIENT
 ########################################################
 echo " Setting the number of authentication attempts before disconnecting the client to four"
@@ -248,7 +251,8 @@ echo -e " Send 'Do Not Track' header in Safari"
 defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
 
 
-
+########################################################################################################################
+########################################################################################################################
 
 
 ########################################################
@@ -282,7 +286,8 @@ echo " Preventing any actions when a DVD containing video is inserted"
 defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.dvd.video.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
 
 
-
+########################################################################################################################
+########################################################################################################################
 
 
 ########################################################
