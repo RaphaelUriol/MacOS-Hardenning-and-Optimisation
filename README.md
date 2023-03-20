@@ -6,9 +6,27 @@ Script to Harden and Optimise MasOs Ventura 13.2.1
 
 Hardening
 -------------------------------
-Global hardenning
-- [X] Turns off the icloud login prompt
-- [x] Disabling the infrared reciever
+Disabling native Apple settings
+
+- [x] Disable the infrared reciever
+- [x] Disable guest login access
+- [x] Disable the file sharing daemon
+- [x] Disable nfs server daemon
+- [x] Disable the public key authentication mechanism
+- [x] Disable ipv6 on wifi and ethernet
+- [x] Disable ssh access
+- [x] Disable potential dns leak
+- [x] Disable apple remote events
+- [x] Disable apple remote agent and remove access
+- [x] Disable auto save to icloud for new documents
+- [x] Disable search data leaking in safari
+- [x] Disable siri
+- [x] Disable Captive Portal
+
+Global Hardening
+
+- [x] Turns off the icloud login prompt
+- [x] Prohibits MAC OS X from creating temporary files on remote volumes
 - [x] Enable automatic updates
 - [x] Check app updates every day insteade of once a week
 - [x] Turns off password hints
@@ -20,25 +38,13 @@ Global hardenning
 - [x] Stop sending of diagnostic info to apple
 - [x] Restrict sudo to a single command
 - [x] Remove the list of users from the login screen
-- [x] Disable guset login access
 - [x] Turns on file extensions
 - [x] Prevents other applications from intercepting text typed in to terminal
 - [x] Prevents downloaded signed software from recieving incoming connections
-- [x] Disables the file sharing daemon
 - [x] Prevents the computer from broadcasting bonjour service adverts
-- [x] Disables nfs server daemon
-- [x] Disables the public key authentication mechanism
 - [x] Prevents root login via ssh
 - [x] Limits the number of authentication attempts before disconnecting the client
-- [x] Disable ipv6 on wifi and ethernet
-- [x] Disable ssh access
 - [x] Send do not track headre in safari
-- [x] Disable potential dns leak
-- [x] Disable apple remote events
-- [x] Disable apple remote agent and remove access
-- [x] Disable auto save to icloud for new documents
-- [x] Disable search data leaking in safari
-- [x] Disables siri
 
 CD Settings
 
