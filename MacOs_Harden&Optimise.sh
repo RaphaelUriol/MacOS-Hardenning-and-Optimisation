@@ -8,7 +8,7 @@
 # https://github.com/AtropineTears/TheMacHardeningScripts/blob/main/MacOsX-Harden.sh
 # https://github.com/wakedog/macos_scripts/blob/main/macos_script.sh
 
-# For Hardening and optimisation
+# For Hardening and optimisation MacOS Ventura 13.2.1
 
 
 ########################################################
