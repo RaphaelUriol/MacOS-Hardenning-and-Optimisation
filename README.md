@@ -39,14 +39,20 @@ Global hardenning
 - [x] Disable auto save to icloud for new documents
 - [x] Disable search data leaking in safari
 
+
+
 CD Settings
+
 - [x] Prevents any action when inserting a blank cd
 - [x] Prevents any action when inserting a blank dvd
 - [x] Prevents any action when inserting a music cd
 - [x] Prevents any action when inserting a picture cd
 - [x] Prevents any action when inserting a video dvd
 
+
+
 FileVault
+
 - [x] Enebles Filevault and set up a recovery key
 - [x] Remove the admin account from the filevault login screen
 
