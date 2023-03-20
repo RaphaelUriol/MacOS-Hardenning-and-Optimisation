@@ -8,41 +8,41 @@ Hardening
 -------------------------------
 Disabling native Apple settings
 
-- [x] Disable the infrared reciever
-- [x] Disable guest login access
-- [x] Disable the file sharing daemon
-- [x] Disable nfs server daemon
-- [x] Disable the public key authentication mechanism
-- [x] Disable ipv6 on wifi and ethernet
-- [x] Disable ssh access
-- [x] Disable potential dns leak
-- [x] Disable apple remote events
-- [x] Disable apple remote agent and remove access
-- [x] Disable auto save to icloud for new documents
-- [x] Disable search data leaking in safari
-- [x] Disable siri
-- [x] Disable Captive Portal
+- [x] Disables the infrared reciever
+- [x] Disables guest login access
+- [x] Disables the file sharing daemon
+- [x] Disables nfs server daemon
+- [x] Disables the public key authentication mechanism
+- [x] Disables ipv6 on wifi and ethernet
+- [x] Disables ssh access
+- [x] Disables potential dns leak
+- [x] Disables apple remote events
+- [x] Disables apple remote agent and remove access
+- [x] Disables auto save to icloud for new documents
+- [x] Disables search data leaking in safari
+- [x] Disables siri
+- [x] Disables Captive Portal
 
 Global Hardening
 
-- [x] Turns off the icloud login prompt
-- [x] Prohibits MAC OS X from creating temporary files on remote volumes
-- [x] Enable automatic updates
-- [x] Check app updates every day insteade of once a week
-- [x] Turns off password hints
-- [x] Sets the screenlock timeout
-- [x] Sets the firewall
-- [x] Sets the firmware password
-- [x] Enable gatekeeper
-- [x] Remove harmfull softawres
-- [x] Stop sending of diagnostic info to apple
-- [x] Restrict sudo to a single command
-- [x] Remove the list of users from the login screen
-- [x] Turns on file extensions
 - [x] Prevents other applications from intercepting text typed in to terminal
 - [x] Prevents downloaded signed software from recieving incoming connections
 - [x] Prevents the computer from broadcasting bonjour service adverts
 - [x] Prevents root login via ssh
+- [x] Sets the screenlock timeout
+- [x] Sets the firewall
+- [x] Sets the firmware password
+- [x] Remove the list of users from the login screen
+- [x] Remove harmfull softawres
+- [x] Prohibits MAC OS X from creating temporary files on remote volumes
+- [x] Turns off the icloud login prompt
+- [x] Turns off password hints
+- [x] Turns on file extensions
+- [x] Enable automatic updates
+- [x] Enable gatekeeper
+- [x] Check app updates every day insteade of once a week
+- [x] Stop sending of diagnostic info to apple
+- [x] Restrict sudo to a single command
 - [x] Limits the number of authentication attempts before disconnecting the client
 - [x] Send do not track headre in safari
 
