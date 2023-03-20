@@ -6,7 +6,7 @@ Script to Harden and Optimise MasOs Ventura 13.2.1
 
 Hardening
 -------------------------------
-
+Global hardenning
 - [X] Turns off the icloud login prompt
 - [x] Disabling the infrared reciever
 - [x] Enable automatic updates
@@ -16,10 +16,10 @@ Hardening
 - [x] Sets the firewall
 - [x] Sets the firmware password
 - [x] Enable gatekeeper
+- [x] Remove harmfull softawres
 - [x] Stop sending of diagnostic info to apple
 - [x] Restrict sudo to a single command
 - [x] Remove the list of users from the login screen
-- [x] Remove the admin account from the filevault login screen
 - [x] Disable guset login access
 - [x] Turns on file extensions
 - [x] Prevents other applications from intercepting text typed in to terminal
@@ -38,11 +38,15 @@ Hardening
 - [x] Disable apple remote agent and remove access
 - [x] Disable auto save to icloud for new documents
 - [x] Disable search data leaking in safari
+CD Settings
 - [x] Prevents any action when inserting a blank cd
 - [x] Prevents any action when inserting a blank dvd
 - [x] Prevents any action when inserting a music cd
 - [x] Prevents any action when inserting a picture cd
 - [x] Prevents any action when inserting a video dvd
+FileVault
+- [x] Enebles Filevault and set up a recovery key
+- [x] Remove the admin account from the filevault login screen
 
 
 Firewall conf 
