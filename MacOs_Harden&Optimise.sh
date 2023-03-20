@@ -5,6 +5,8 @@
 # https://github.com/ayethatsright/MacOS-Hardening-Script/blob/master/hardening_script.sh
 # https://github.com/dotslashlevi/optimac/blob/main/optimac.sh
 # https://github.com/sickcodes/osx-optimizer
+# https://github.com/AtropineTears/TheMacHardeningScripts/blob/main/MacOsX-Harden.sh
+# https://github.com/wakedog/macos_scripts/blob/main/macos_script.sh
 
 # For Hardening and optimisation
 
@@ -16,6 +18,19 @@
 #               \/
 ########################################################
 ########################################################
+
+
+#---MetaData---#
+# Prohibits MAC OS X from creating temporary files on remote volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+#---Captive Portal---#
+# Disables Captive Portal
+defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
+
+
+
 
 
 ########################################################
@@ -83,6 +98,15 @@ spctl --master-enable
 echo " Gatekeeper is now enabled"
 
 ########################################################
+#  REMOVE HARMFULL SOFTWARES
+########################################################
+
+if ConfirmExecution "Do you want to scan for and remove harmful software?"; then
+    # Use Malwarebytes to scan for and remove harmful software
+    sudo /Library/Application\ Support/Malwarebytes/MBAM/mbam
+fi
+
+########################################################
 #  STOP SENDING OF DIAGNOSTIC INFO TO APPLE
 ########################################################
 echo " Stopping this machine from sending diagnostic info to Apple"
@@ -100,12 +124,6 @@ sed -i.bk 's/^Defaults[[:blank:]]timestamp_timeout.*$//' /etc/sudoers; echo "Def
 ########################################################
 echo " Removing the list of users from the login screen"
 defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -int 1
-
-########################################################
-#  REMOVE THE ADMIN ACCOUNT FROM THE FILEVAULT LOGIN SCREEN
-########################################################
-echo " Removing the local administrator account from the FileVault login screen"
-fdesetup remove -user administrator
 
 ########################################################
 #  DISABLE GUSET LOGIN ACCESS
@@ -220,6 +238,8 @@ defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 
+
+
 ########################################################
 #  PREVENTS ANY ACTION WHEN INSERTING A BLANK CD
 ########################################################
@@ -249,6 +269,28 @@ defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.c
 ########################################################
 echo " Preventing any actions when a DVD containing video is inserted"
 defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.dvd.video.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+
+
+########################################################
+#  ENABLING FILE VAULT AND SETING UP RECOVERY KEY
+########################################################
+if !(fdesetup status | grep "FileVault is On."); then
+    if ConfirmExecution "Do you want to enable FileVault?"; then
+        # Set a strong, randomly-generated password for the FileVault recovery key
+        recoveryKeyPassword=$(openssl rand -base64 32)
+        # Enable FileVault with the recovery key password
+        fdesetup enable -recoverykey "$recoveryKeyPassword"
+    fi
+fi
+
+########################################################
+#  REMOVE THE ADMIN ACCOUNT FROM THE FILEVAULT LOGIN SCREEN
+########################################################
+echo " Removing the local administrator account from the FileVault login screen"
+fdesetup remove -user administrator
+
+
 
 ########################################################
 ########################################################
