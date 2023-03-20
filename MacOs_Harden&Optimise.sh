@@ -238,13 +238,13 @@ defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 
-
 ########################################################
 #  DISABLES SIRI
 ########################################################
 echo " Disabling Siri"
 defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
 sleep 2
+
 
 ########################################################
 #  PREVENTS ANY ACTION WHEN INSERTING A BLANK CD
