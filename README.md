@@ -2,7 +2,7 @@
 
 Script to Harden and Optimise MasOs Ventura 13.2.1
 -------------------------------
-This script offers a selection of configurations for Harden your Mac, feel free to comment on the parts you are not interested in. 
+This is a All in One script that offers a selection of configurations for Hardening your Mac, and optimizing it.Ffeel free to comment on the parts you are not interested in. 
 
 Hardening
 -------------------------------
