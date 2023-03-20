@@ -38,8 +38,7 @@ Global hardenning
 - [x] Disable apple remote agent and remove access
 - [x] Disable auto save to icloud for new documents
 - [x] Disable search data leaking in safari
-
-
+- [x] Disables siri
 
 CD Settings
 
@@ -48,8 +47,6 @@ CD Settings
 - [x] Prevents any action when inserting a music cd
 - [x] Prevents any action when inserting a picture cd
 - [x] Prevents any action when inserting a video dvd
-
-
 
 FileVault
 
@@ -104,4 +101,4 @@ Optimisation
 - [x] Disable Heavy login screen wallpaper
 
 
-- [ ] Disables siri
+
