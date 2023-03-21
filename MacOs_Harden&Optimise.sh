@@ -24,13 +24,65 @@
 # Disabling native Apple settings
 ########################################################################################################################
 
+########################################################
+#DISABLES MEDIA SHARING
+########################################################
+echo " Disabling Media sharing"
+defaults write com.apple.amp.mediasharingd home-sharing-enabled -int 0
 
+########################################################
+#DISABLES CONTENT CACHING
+########################################################
+echo " Disabling Content caching"
+/usr/bin/sudo /usr/bin/AssetCacheManagerUtil deactivate
+
+########################################################
+#DISABLES INTERNET SHARING
+########################################################
+echo " Disabling Internet sharing"
+usr/bin/sudo /usr/bin/defaults write /Library/Preferences/SystemConfiguration/com.apple.nat NAT -dict Enabled -int 0
+
+########################################################
+#DISABLES REMOTE MANAGEMENT
+########################################################
+echo " Disabling Remote Management"
+/usr/bin/sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -stop
+
+########################################################
+#DISABLES REMOTE LOGIN
+########################################################
+echo " Disabling Remote login"
+/usr/bin/sudo /usr/sbin/systemsetup -setremotelogin off
+
+########################################################
+#DISABLES FILE SHARING
+########################################################
+echo " Disabling File Sharing"
+/usr/bin/sudo /bin/launchctl disable system/com.apple.smbd
+
+########################################################
+#DISABLES SCREEN SHARING
+########################################################
+echo " Disabling Screen Sharing"
+/usr/bin/sudo /bin/launchctl disable system/com.apple.screensharing
 
 ########################################################
 #DISABLES AIRDROP
 ########################################################
 echo " Disabling Airdrop"
 sudo ifconfig awdl0 down 
+
+########################################################
+#DISABLES AIRPLAY
+########################################################
+echo " Disabling Airplay"
+defaults write com.apple.controlcenter.plist AirplayRecieverEnabled -bool false
+
+########################################################
+#DISABLES PRINTER SHARING
+########################################################
+echo " Disabling Printer sharing"
+/usr/bin/sudo /usr/sbin/cupsctl --no-share-printers
 
 ########################################################
 #DISABLES THE INFRARED RECIEVER
@@ -87,7 +139,7 @@ defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdv
 #  DISABLES APPLE REMOTE EVENTS
 ########################################################
 echo -e " Disable Apple remote events"
-systemsetup -setremoteappleevents off >/dev/null 2>/dev/null
+/usr/bin/sudo /usr/sbin/systemsetup -setremoteappleevents off
 
 ########################################################
 #  DISABLES APPLE REMOTE AGENT AND REMOVE ACCESS
@@ -119,7 +171,14 @@ sleep 2
 ########################################################
 #  DISABLES CAPTIVE PORTALS
 ########################################################
+echo " Disabling captive portals"
 defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
+
+########################################################
+#  DISABLES BLUETOOTH
+########################################################
+#echo " Disabling Blurtooth"
+#defaults write com.apple.Bluetooth PrefKeyServicesEnabled -bool false
 
 
 ########################################################################################################################
@@ -179,6 +238,12 @@ echo " Setting the firmware password"
 firmwarepasswd -setpasswd
 
 ########################################################
+#  SETS AUTO DATE AND TIME ZONE
+########################################################
+echo " Setting auto date and time zone"
+/usr/sbin/systemsetup -settimezone France/Paris
+
+########################################################
 #  REMOVE THE LIST OF USERS FROM THE LOGIN SCREEN
 ########################################################
 echo " Removing the list of users from the login screen"
@@ -234,6 +299,20 @@ defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool tr
 ########################################################
 spctl --master-enable
 echo " Gatekeeper is now enabled"
+
+
+
+########################################################
+#  ENABLE TIME MACHINE 
+########################################################
+echo " Enabling time machine"
+sudo tmutil enable
+
+########################################################
+#  ENABLE TIME MACHINE BACKUPS
+########################################################
+echo " enabling time machine auto backups"
+defaults write /Library/Preferences/com.apple.TimeMachine.plist AutoBackup -bool true
 
 ########################################################
 #  CHECK APP UPDATES EVERY DAY INSTEAD OF ONCE A WEEK
