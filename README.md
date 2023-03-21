@@ -31,6 +31,7 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Prevents root login via ssh
 - [x] Sets the screenlock timeout
 - [x] Sets the firewall
+- [x] Sets Stealth mode ON
 - [x] Sets the firmware password
 - [x] Remove the list of users from the login screen
 - [x] Remove harmfull softawres
