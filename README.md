@@ -100,33 +100,33 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 
 ### Other settings (not from CIS)
 
-- [x] Disables the infrared reciever
-- [x] Disables the file sharing daemon
-- [x] Disables nfs server daemon
-- [x] Disables the public key authentication mechanism
-- [x] Disables ipv6 on wifi and ethernet
-- [x] Disables ssh access
-- [x] Disables potential dns leak
-- [x] Disables apple remote agent and remove access
-- [x] Disables auto save to icloud for new documents
-- [x] Disables search data leaking in safari
-- [x] Disables Captive Portal
-- [x] Prevents other applications from intercepting text typed in to terminal
-- [x] Prevents downloaded signed software from recieving incoming connections
-- [x] Prevents the computer from broadcasting bonjour service adverts
-- [x] Prevents root login via ssh
-- [x] Sets the screenlock timeout
-- [x] Sets the firmware password
-- [x] Remove the list of users from the login screen
-- [x] Remove harmfull softawres
-- [x] Prohibits MAC OS X from creating temporary files on remote volumes
-- [x] Turns off the icloud login prompt
-- [x] Turns on file extensions
-- [x] Check app updates every day insteade of once a week
-- [x] Restrict sudo to a single command
-- [x] Limits the number of authentication attempts before disconnecting the client
-- [x] Send do not track headre in safari
-- [x] Remove the admin account from the filevault login screen
+- [x] Disables the infrared reciever  
+- [x] Disables the file sharing daemon  
+- [x] Disables nfs server daemon  
+- [x] Disables the public key authentication mechanism  
+- [x] Disables ipv6 on wifi and ethernet  
+- [x] Disables ssh access  
+- [x] Disables potential dns leak  
+- [x] Disables apple remote agent and remove access  
+- [x] Disables auto save to icloud for new documents  
+- [x] Disables search data leaking in safari  
+- [x] Disables Captive Portal  
+- [x] Prevents other applications from intercepting text typed in to terminal  
+- [x] Prevents downloaded signed software from recieving incoming connections  
+- [x] Prevents the computer from broadcasting bonjour service adverts  
+- [x] Prevents root login via ssh  
+- [x] Sets the screenlock timeout  
+- [x] Sets the firmware password  
+- [x] Remove the list of users from the login screen  
+- [x] Remove harmfull softawres  
+- [x] Prohibits MAC OS X from creating temporary files on remote volumes  
+- [x] Turns off the icloud login prompt  
+- [x] Turns on file extensions  
+- [x] Check app updates every day insteade of once a week  
+- [x] Restrict sudo to a single command  
+- [x] Limits the number of authentication attempts before disconnecting the client  
+- [x] Send do not track headre in safari  
+- [x] Remove the admin account from the filevault login screen  
 
 ## Firewall conf 
 
