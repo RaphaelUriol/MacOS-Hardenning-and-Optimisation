@@ -1,23 +1,50 @@
 # MacOS-Hardenning-and-Optimisation
 
->__Note__
+> __Note__
 
 This is a All in One script made for MacOs Ventura 13.2.1, that offers a selection of configurations for Hardening your Mac, and optimizing it by disabling and configuring diferent features. The configurations are all base on CIS [Apple_macOS_13.0_Ventura_Benchmark_v1.0.0](https://downloads.cisecurity.org/#/) Feel free to comment on the parts you are not interested in. 
 
 ## Hardening
 
-### Disabling native Apple settings
+### Updates, Patches and additional Security Software
 
-- [x] Disables Media Sharing
-- [x] Disables Content Catching
-- [x] Disables Internet Sharing
-- [x] Disables Remote Management
-- [x] Disables Remote Login
-- [x] Disables File Sharing
-- [x] Disables Screen Sharing
+- [x] Enable automatic updates (apps and system)
+
+### System Settings
+
+- [ ] Disables ICloud Sync (not included)
+- [x] Sets the firewall
+- [x] Sets Stealth mode ON
 - [x] Disables Airdrop
 - [x] Disables Airplay
+- [x] Set auto date and time zone
+- [x] Disables Screen Sharing
+- [x] Disables File Sharing
 - [x] Disables Printer Sharing
+- [x] Disables Remote Login
+- [x] Disables Remote Management
+- [x] Disables apple remote events
+- [x] Disables Internet Sharing
+- [x] Disables Content Catching
+- [x] Disables Media Sharing
+- [ ] Disables Bluetooth (included)
+- [ ] Make sure computeru name doesn't contain IP or organisational protected informations (manually done)
+- [x] Enable time machine
+- [x] Enable time machine auto backups
+- [x] Enable wifi status in menu bar
+- [x] Enable Bluetooth status in menu bar
+- [x] Disables siri
+
+
+#### CD Settings
+
+- [x] Prevents any action when inserting a blank cd
+- [x] Prevents any action when inserting a blank dvd
+- [x] Prevents any action when inserting a music cd
+- [x] Prevents any action when inserting a picture cd
+- [x] Prevents any action when inserting a video dvd
+
+
 - [x] Disables the infrared reciever
 - [x] Disables guest login access
 - [x] Disables the file sharing daemon
@@ -26,13 +53,11 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Disables ipv6 on wifi and ethernet
 - [x] Disables ssh access
 - [x] Disables potential dns leak
-- [x] Disables apple remote events
 - [x] Disables apple remote agent and remove access
 - [x] Disables auto save to icloud for new documents
 - [x] Disables search data leaking in safari
 - [x] Disables siri
 - [x] Disables Captive Portal
-- [ ] Disables Bluetooth
 
 ### Global Hardening
 
@@ -41,34 +66,19 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Prevents the computer from broadcasting bonjour service adverts
 - [x] Prevents root login via ssh
 - [x] Sets the screenlock timeout
-- [x] Sets the firewall
-- [x] Sets Stealth mode ON
 - [x] Sets the firmware password
-- [x] Set auto date and time zone
 - [x] Remove the list of users from the login screen
 - [x] Remove harmfull softawres
 - [x] Prohibits MAC OS X from creating temporary files on remote volumes
 - [x] Turns off the icloud login prompt
 - [x] Turns off password hints
 - [x] Turns on file extensions
-- [x] Enable automatic updates
 - [x] Enable gatekeeper
-- [x] Enable time machine
-- [x] Enable time machine auto backups
 - [x] Check app updates every day insteade of once a week
 - [x] Stop sending of diagnostic info to apple
 - [x] Restrict sudo to a single command
 - [x] Limits the number of authentication attempts before disconnecting the client
 - [x] Send do not track headre in safari
-
-
-### CD Settings
-
-- [x] Prevents any action when inserting a blank cd
-- [x] Prevents any action when inserting a blank dvd
-- [x] Prevents any action when inserting a music cd
-- [x] Prevents any action when inserting a picture cd
-- [x] Prevents any action when inserting a video dvd
 
 ### FileVault
 
