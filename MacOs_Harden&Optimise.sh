@@ -161,10 +161,131 @@ defaults write com.apple.controlcenter.plist Bluetooth -int 18
 echo " Disabling Siri"
 defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
 
+########################################################
+#  ENABLE LOCATION SERVICE
+########################################################
+echo " Enable location service"
+/usr/bin/sudo /bin/launchctl load -w /System/Library/LaunchDaemons/com.apple.locationd.plis
+
+########################################################
+#  ENABLE LOCATION SERVICE IN MENU BAR
+########################################################
+echo " Show location service in menu bar"
+defaults write /Library/Preferences/com.apple.locationmenu.plist ShowSystemServices -bool true
+
+########################################################
+#  STOP SENDING OF DIAGNOSTIC INFO TO APPLE
+########################################################
+echo " Stopping this machine from sending diagnostic info to Apple"
+defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist AutoSubmit -bool FALSE
+defaults write com.apple.CrashReporter DialogType none
+
+########################################################
+#  ENABLE GATEKEEPER
+########################################################
+spctl --master-enable
+echo " Gatekeeper is now enabled"
+
+########################################################
+#  ENABLING FILE VAULT AND SETING UP RECOVERY KEY
+########################################################
+if !(fdesetup status | grep "FileVault is On."); then
+    if ConfirmExecution "Do you want to enable FileVault?"; then
+        # Set a strong, randomly-generated password for the FileVault recovery key
+        recoveryKeyPassword=$(openssl rand -base64 32)
+        # Enable FileVault with the recovery key password
+        fdesetup enable -recoverykey "$recoveryKeyPassword"
+    fi
+fi
+
+########################################################
+#  SECURE SCREEN SAVER CORNER
+########################################################
+echo " Secure sceen saver corner are secure"
+defaults write com.apple.dock <corner that is set to '6'> -int 0
+
+########################################################
+#  DISABLE POWER NAP
+########################################################
+echo " Disable power nap"
+pmset -a powernap 0
+
+########################################################
+#  DISABLE POWER NAP
+########################################################
+echo " Disable Wake for Network Access "
+pmset -a womp 0
+
+########################################################
+#  ENABLE THE OS IS NOT ACTIVATED WHEN RESUMING FROM SLEEP
+########################################################
+echo " Ensure the OS is not Activate When Resuming from Sleep "
+pmset -a standbydelaylow <value≤900>
+pmset -a standbydelayhigh <value≤900>
+pmset -a highstandbythreshold <value≥90>
+pmset -a destroyfvkeyonstandby 1
+pmset -a hibernatemode 25
+
+########################################################
+#  ENSURE AN INACTIVITY INTERVAL OF 20MIN OR LESS FROM THE SCREEN SAVER IS ENABLE
+########################################################
+echo " Ensure an Inactivity Interval of 20 Minutes Or Less for the Screen Saver Is Enabled  "
+defaults write com.apple.screensaver idleTime -int <value ≤1200>
+
+########################################################
+#  ESURE PASSORD IS REQUIERED
+########################################################
+echo "Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled "
+sysadminctl -screenLock immediate -password <administrator password>
+
+########################################################
+#  ENABLE CUSTOM LOGIN SCREEN
+########################################################
+echo "Enable custom login screen"
+defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "YOUR MESSAGE HERE"
+
+########################################################
+#  ENSURE LOGIN WINDOW DISPLAYS AS NAME AND PASS IS ENABLE
+########################################################
+echo "Ensure Login Window Displays as Name and Password Is Enabled "
+defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+
+########################################################
+#  TURNS OFF PASSWORD HINTS
+########################################################
+echo " Disabling password hints on the lock screen"
+defaults write com.apple.loginwindow RetriesUntilHint -int 0
+
+########################################################
+#  ENSURE USERS ACCOUNTS DO NOT HAVE PASSWORD HINT
+########################################################
+#echo "Ensure Users' Accounts Do Not Have a Password Hint"
+#dscl . -list /Users hint . -delete /Users/firstuser hint
+
+########################################################
+#  DISABLES GUEST LOGIN ACCESS
+########################################################
+echo -e " Disable guest login access"
+defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
+defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
+defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+
+########################################################
+#  DISABLES GUEST ACCESS TO SHARE FOLDERS
+########################################################
+echo -e " Disable guest access to share folders"
+sysadminctl -smbGuestAccess off
+
+########################################################
+#  DISABLES AUTOMATIC LOGIN
+########################################################
+echo " Disable automatic login"
+defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
 
 
-
-
+########################################################################################################################
+# Logging and auditing
+########################################################################################################################
 
 
 ########################################################
@@ -172,13 +293,6 @@ defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistan
 ########################################################
 echo " Disabling infrared receiver"
 defaults write com.apple.driver.AppleIRController DeviceEnabled -bool FALSE
-
-########################################################
-#  DISABLES GUSET LOGIN ACCESS
-########################################################
-echo -e " Disable guest login access"
-defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
-defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
 
 ########################################################
 #  DISABLES THE FILE SHARING DAEMON
@@ -317,11 +431,7 @@ defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "10.12"
 
-########################################################
-#  TURNS OFF PASSWORD HINTS
-########################################################
-echo " Disabling password hints on the lock screen"
-defaults write com.apple.loginwindow RetriesUntilHint -int 0
+
 
 ########################################################
 #  TURNS ON FILE EXTENSIONS
@@ -330,23 +440,10 @@ echo " Turning on file extensions which are hidden by default"
 defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
 
 ########################################################
-#  ENABLE GATEKEEPER
-########################################################
-spctl --master-enable
-echo " Gatekeeper is now enabled"
-
-########################################################
 #  CHECK APP UPDATES EVERY DAY INSTEAD OF ONCE A WEEK
 ########################################################
 echo -e " Check for App Updates daily, not just once a week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-
-########################################################
-#  STOP SENDING OF DIAGNOSTIC INFO TO APPLE
-########################################################
-echo " Stopping this machine from sending diagnostic info to Apple"
-defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist AutoSubmit -bool FALSE
-defaults write com.apple.CrashReporter DialogType none
 
 ########################################################
 #  RESTRICT SUDO TO A SINGLE COMMAND
@@ -405,19 +502,6 @@ defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.d
 
 ########################################################################################################################
 ########################################################################################################################
-
-
-########################################################
-#  ENABLING FILE VAULT AND SETING UP RECOVERY KEY
-########################################################
-if !(fdesetup status | grep "FileVault is On."); then
-    if ConfirmExecution "Do you want to enable FileVault?"; then
-        # Set a strong, randomly-generated password for the FileVault recovery key
-        recoveryKeyPassword=$(openssl rand -base64 32)
-        # Enable FileVault with the recovery key password
-        fdesetup enable -recoverykey "$recoveryKeyPassword"
-    fi
-fi
 
 ########################################################
 #  REMOVE THE ADMIN ACCOUNT FROM THE FILEVAULT LOGIN SCREEN
