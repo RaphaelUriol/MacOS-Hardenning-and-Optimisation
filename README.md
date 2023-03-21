@@ -28,54 +28,54 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 
 #### CD Settings
 
-- [x] Prevents any action when inserting a blank cd
-- [x] Prevents any action when inserting a blank dvd
-- [x] Prevents any action when inserting a music cd
-- [x] Prevents any action when inserting a picture cd
-- [x] Prevents any action when inserting a video dvd
+- [x] Prevents any action when inserting a blank cd  
+- [x] Prevents any action when inserting a blank dvd  
+- [x] Prevents any action when inserting a music cd  
+- [x] Prevents any action when inserting a picture cd  
+- [x] Prevents any action when inserting a video dvd  
 
-- [x] Disables Screen Sharing
-- [x] Disables File Sharing
-- [x] Disables Printer Sharing
-- [x] Disables Remote Login
-- [x] Disables Remote Management
-- [x] Disables apple remote events
-- [x] Disables Internet Sharing
-- [x] Disables Content Catching
-- [x] Disables Media Sharing
-- [ ] Disables Bluetooth (included)
-- [ ] Make sure computeru name doesn't contain IP or organisational protected informations (manually done)
-- [x] Enable time machine
-- [x] Enable time machine auto backups
-- [x] Enable wifi status in menu bar
-- [x] Enable Bluetooth status in menu bar
-- [x] Disables siri
-- [x] Enable location service
-- [x] Show location service in menu bar
-- [ ] Audit location service access (manually done)
-- [x] Stop sending of diagnostic info to apple
-- [ ] Ensure Limit Ad Tracking Is Enabled (not included)
-- [x] Enable gatekeeper
-- [x] Enbles Filevault and set up a recovery key
-- [ ] Audit Lockdown mode (manually done)
-- [ ] Ensure an Administrator Password Is Required to Access System-Wide Preferences (manually done)
-- [x] Ensure Screen Saver Corners Are Secure 
-- [ ] Audit Universal Control Settings (manually done)
-- [x] Ensure Power Nap Is Disabled 
-- [x] Disables Wake for Network Access 
-- [x] Ensure the OS is not Activate When Resuming from Sleep
-- [x] Ensure an Inactivity Interval of 20 Minutes Or Less for the Screen Saver Is Enabled 
-- [x] Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled 
-- [x] Enable custom login screen
-- [x] Ensure Login Window Displays as Name and Password Is Enabled 
-- [x] Turns off password hints
-- [ ] Ensure Users' Accounts Do Not Have a Password Hint (included)
-- [ ] Audit Touch ID and Wallet & Apple Pay Settings (manually done)
-- [x] Disables guest login access
-- [x] Ensure Guest Access to Shared Folders Is Disabled
-- [x] Disable automatic login
-- [ ] Audit Passwords System Preference Setting (manually done)
-- [ ] Audit Notification & Focus Settings (manually done)
+- [x] Disables Screen Sharing  
+- [x] Disables File Sharing  
+- [x] Disables Printer Sharing  
+- [x] Disables Remote Login  
+- [x] Disables Remote Management  
+- [x] Disables apple remote events  
+- [x] Disables Internet Sharing  
+- [x] Disables Content Catching  
+- [x] Disables Media Sharing  
+- [ ] Disables Bluetooth (included)  
+- [ ] Make sure computeru name doesn't contain IP or organisational protected informations (manually done)  
+- [x] Enable time machine  
+- [x] Enable time machine auto backups  
+- [x] Enable wifi status in menu bar  
+- [x] Enable Bluetooth status in menu bar  
+- [x] Disables siri  
+- [x] Enable location service  
+- [x] Show location service in menu bar  
+- [ ] Audit location service access (manually done)  
+- [x] Stop sending of diagnostic info to apple  
+- [ ] Ensure Limit Ad Tracking Is Enabled (not included)  
+- [x] Enable gatekeeper  
+- [x] Enbles Filevault and set up a recovery key  
+- [ ] Audit Lockdown mode (manually done)  
+- [ ] Ensure an Administrator Password Is Required to Access System-Wide Preferences (manually done)  
+- [x] Ensure Screen Saver Corners Are Secure   
+- [ ] Audit Universal Control Settings (manually done)  
+- [x] Ensure Power Nap Is Disabled   
+- [x] Disables Wake for Network Access   
+- [x] Ensure the OS is not Activate When Resuming from Sleep  
+- [x] Ensure an Inactivity Interval of 20 Minutes Or Less for the Screen Saver Is Enabled   
+- [x] Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled   
+- [x] Enable custom login screen  
+- [x] Ensure Login Window Displays as Name and Password Is Enabled   
+- [x] Turns off password hints  
+- [ ] Ensure Users' Accounts Do Not Have a Password Hint (included)  
+- [ ] Audit Touch ID and Wallet & Apple Pay Settings (manually done)  
+- [x] Disables guest login access  
+- [x] Ensure Guest Access to Shared Folders Is Disabled  
+- [x] Disable automatic login  
+- [ ] Audit Passwords System Preference Setting (manually done)  
+- [ ] Audit Notification & Focus Settings (manually done)  
 
 
 ### Logging and auditing
