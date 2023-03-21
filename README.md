@@ -1,6 +1,8 @@
 # MacOS-Hardenning-and-Optimisation
 
-This is a All in One script made for MacOs Ventura 13.2.1, that offers a selection of configurations for Hardening your Mac, and optimizing it by disabling and configuring diferent features. Feel free to comment on the parts you are not interested in. 
+> __Note__
+
+This is a All in One script made for MacOs Ventura 13.2.1, that offers a selection of configurations for Hardening your Mac, and optimizing it by disabling and configuring diferent features. The configurations are all base on CIS .[Apple_macOS_13.0_Ventura_Benchmark_v1.0.0](https://downloads.cisecurity.org/#/) Feel free to comment on the parts you are not interested in. 
 
 ## Hardening
 
