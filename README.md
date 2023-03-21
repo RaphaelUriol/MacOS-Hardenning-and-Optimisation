@@ -98,10 +98,7 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Enable Apple Mobile File Integrity (AMFI) 
 - [x] Enable Sealed System Volume (SSV) 
 
-
-
-
-
+### Other settings (not from CIS)
 
 - [x] Disables the infrared reciever
 - [x] Disables the file sharing daemon
@@ -130,7 +127,6 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Limits the number of authentication attempts before disconnecting the client
 - [x] Send do not track headre in safari
 - [x] Remove the admin account from the filevault login screen
-
 
 ## Firewall conf 
 
