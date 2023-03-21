@@ -4,7 +4,14 @@
 
 This is a All in One script made for MacOs Ventura 13.2.1, that offers a selection of configurations for Hardening your Mac, and optimizing it by disabling and configuring diferent features. The configurations are all base on CIS [Apple_macOS_13.0_Ventura_Benchmark_v1.0.0](https://downloads.cisecurity.org/#/) Feel free to comment on the parts you are not interested in. 
 
-## Hardening
+Many configurations and settings need to be running in sudo.
+
+#### Legend :
+Manually done : You need to do it manually following the CIS benchmark  
+Included      : the script contain the code to do it automatically but it was not relevant for my use so it is commented  
+Not included  : It can be done automatically but I couldn't do it, or you need to do it for each user
+
+## Hardening (Organised according to CIS Benchmark)
 
 ### Updates, Patches and additional Security Software
 
@@ -18,6 +25,15 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Disables Airdrop
 - [x] Disables Airplay
 - [x] Set auto date and time zone
+
+#### CD Settings
+
+- [x] Prevents any action when inserting a blank cd
+- [x] Prevents any action when inserting a blank dvd
+- [x] Prevents any action when inserting a music cd
+- [x] Prevents any action when inserting a picture cd
+- [x] Prevents any action when inserting a video dvd
+
 - [x] Disables Screen Sharing
 - [x] Disables File Sharing
 - [x] Disables Printer Sharing
@@ -34,19 +50,41 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Enable wifi status in menu bar
 - [x] Enable Bluetooth status in menu bar
 - [x] Disables siri
+- [x] Enable location service
+- [x] Show location service in menu bar
+- [ ] Audit location service access (manually done)
+- [x] Stop sending of diagnostic info to apple
+- [ ] Ensure Limit Ad Tracking Is Enabled (not included)
+- [x] Enable gatekeeper
+- [x] Enbles Filevault and set up a recovery key
+- [ ] Audit Lockdown mode (manually done)
+- [ ] Ensure an Administrator Password Is Required to Access System-Wide Preferences (manually done)
+- [x] Ensure Screen Saver Corners Are Secure 
+- [ ] Audit Universal Control Settings (manually done)
+- [x] Ensure Power Nap Is Disabled 
+- [x] Disables Wake for Network Access 
+- [x] Ensure the OS is not Activate When Resuming from Sleep
+- [x] Ensure an Inactivity Interval of 20 Minutes Or Less for the Screen Saver Is Enabled 
+- [x] Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled 
+- [x] Enable custom login screen
+- [x] Ensure Login Window Displays as Name and Password Is Enabled 
+- [x] Turns off password hints
+- [ ] Ensure Users' Accounts Do Not Have a Password Hint (included)
+- [ ] Audit Touch ID and Wallet & Apple Pay Settings (manually done)
+- [x] Disables guest login access
+- [x] Ensure Guest Access to Shared Folders Is Disabled
+- [x] Disable automatic login
+- [ ] Audit Passwords System Preference Setting (manually done)
+- [ ] Audit Notification & Focus Settings (manually done)
 
 
-#### CD Settings
+### Logging and auditing
 
-- [x] Prevents any action when inserting a blank cd
-- [x] Prevents any action when inserting a blank dvd
-- [x] Prevents any action when inserting a music cd
-- [x] Prevents any action when inserting a picture cd
-- [x] Prevents any action when inserting a video dvd
+
+
 
 
 - [x] Disables the infrared reciever
-- [x] Disables guest login access
 - [x] Disables the file sharing daemon
 - [x] Disables nfs server daemon
 - [x] Disables the public key authentication mechanism
@@ -58,9 +96,6 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Disables search data leaking in safari
 - [x] Disables siri
 - [x] Disables Captive Portal
-
-### Global Hardening
-
 - [x] Prevents other applications from intercepting text typed in to terminal
 - [x] Prevents downloaded signed software from recieving incoming connections
 - [x] Prevents the computer from broadcasting bonjour service adverts
@@ -71,18 +106,11 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 - [x] Remove harmfull softawres
 - [x] Prohibits MAC OS X from creating temporary files on remote volumes
 - [x] Turns off the icloud login prompt
-- [x] Turns off password hints
 - [x] Turns on file extensions
-- [x] Enable gatekeeper
 - [x] Check app updates every day insteade of once a week
-- [x] Stop sending of diagnostic info to apple
 - [x] Restrict sudo to a single command
 - [x] Limits the number of authentication attempts before disconnecting the client
 - [x] Send do not track headre in safari
-
-### FileVault
-
-- [x] Enebles Filevault and set up a recovery key
 - [x] Remove the admin account from the filevault login screen
 
 
