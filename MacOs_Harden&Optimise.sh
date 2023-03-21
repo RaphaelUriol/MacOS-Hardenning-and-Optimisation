@@ -71,6 +71,50 @@ defaults write com.apple.controlcenter.plist AirplayRecieverEnabled -bool false
 echo " Setting auto date and time zone"
 /usr/sbin/systemsetup -settimezone France/Paris
 
+
+
+########################################################################################################################
+# CD Settings
+########################################################################################################################
+
+
+
+########################################################
+#  PREVENTS ANY ACTION WHEN INSERTING A BLANK CD
+########################################################
+echo " Preventing any actions when a blank CD is inserted"
+defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.blank.cd.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+########################################################
+#  PREVENTS ANY ACTION WHEN INSERTING A BLANK DVD
+########################################################
+echo " Preventing any actions when a blank DVD is inserted"
+defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.blank.dvd.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+########################################################
+#  PREVENTS ANY ACTION WHEN INSERTING A MUSIC CD
+########################################################
+echo " Preventing any actions when a music CD is inserted"
+defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.cd.music.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+########################################################
+#  PREVENTS ANY ACTION WHEN INSERTING A PICTURE CD
+########################################################
+echo " Preventing any actions when a picture CD is inserted"
+defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.cd.picture.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+########################################################
+#  PREVENTS ANY ACTION WHEN INSERTING A VIDEO DVD
+########################################################
+echo " Preventing any actions when a DVD containing video is inserted"
+defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.dvd.video.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
+
+
+########################################################################################################################
+
+########################################################################################################################
+
+
 ########################################################
 #DISABLES SCREEN SHARING
 ########################################################
@@ -288,6 +332,16 @@ defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
 ########################################################################################################################
 
 
+
+
+
+
+
+
+
+
+
+
 ########################################################
 #DISABLES THE INFRARED RECIEVER
 ########################################################
@@ -358,12 +412,6 @@ defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 echo " Disabling captive portals"
 defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
-
-########################################################################################################################
-# Global Hardening
-########################################################################################################################
-
-
 ########################################################
 #  PREVENTS OTHER APPLICATIONS FROM INTERCEPTING TEXT TYPED IN TO TERMINAL
 ########################################################
@@ -431,8 +479,6 @@ defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "10.12"
 
-
-
 ########################################################
 #  TURNS ON FILE EXTENSIONS
 ########################################################
@@ -462,46 +508,6 @@ sed -i.bak 's/.*maxAuthTries.*/maxAuthTries 4/' /etc/ssh/sshd_config
 ########################################################
 echo " Send 'Do Not Track' header in Safari"
 defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
-
-
-########################################################################################################################
-# CD Settings
-########################################################################################################################
-
-
-########################################################
-#  PREVENTS ANY ACTION WHEN INSERTING A BLANK CD
-########################################################
-echo " Preventing any actions when a blank CD is inserted"
-defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.blank.cd.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
-
-########################################################
-#  PREVENTS ANY ACTION WHEN INSERTING A BLANK DVD
-########################################################
-echo " Preventing any actions when a blank DVD is inserted"
-defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.blank.dvd.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
-
-########################################################
-#  PREVENTS ANY ACTION WHEN INSERTING A MUSIC CD
-########################################################
-echo " Preventing any actions when a music CD is inserted"
-defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.cd.music.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
-
-########################################################
-#  PREVENTS ANY ACTION WHEN INSERTING A PICTURE CD
-########################################################
-echo " Preventing any actions when a picture CD is inserted"
-defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.cd.picture.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
-
-########################################################
-#  PREVENTS ANY ACTION WHEN INSERTING A VIDEO DVD
-########################################################
-echo " Preventing any actions when a DVD containing video is inserted"
-defaults write ~/Library/Preferences/com.apple.digihub.plist com.apple.digihub.dvd.video.appeared -dict action -int 1; killall -HUP SystemUIServer; killall -HUP cfprefsd
-
-
-########################################################################################################################
-########################################################################################################################
 
 ########################################################
 #  REMOVE THE ADMIN ACCOUNT FROM THE FILEVAULT LOGIN SCREEN
