@@ -21,50 +21,37 @@
 
 
 ########################################################################################################################
-# Disabling native Apple settings
+# Updates, Patches and additional Security Software
 ########################################################################################################################
 
 ########################################################
-#DISABLES MEDIA SHARING
+#ENABLE AUTOMATIC UPDATES
 ########################################################
-echo " Disabling Media sharing"
-defaults write com.apple.amp.mediasharingd home-sharing-enabled -int 0
+echo " Enabling Scheduled updates"
+softwareupdate --schedule on
+defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
+defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
+defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
+defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true 
+
+
+########################################################################################################################
+# System Settings
+########################################################################################################################
 
 ########################################################
-#DISABLES CONTENT CACHING
+#  SETS THE FIREWALL
 ########################################################
-echo " Disabling Content caching"
-/usr/bin/sudo /usr/bin/AssetCacheManagerUtil deactivate
+echo " Enabling Firewall"
+/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
 ########################################################
-#DISABLES INTERNET SHARING
+#  SETS THE STEALTH MODE ON
 ########################################################
-echo " Disabling Internet sharing"
-usr/bin/sudo /usr/bin/defaults write /Library/Preferences/SystemConfiguration/com.apple.nat NAT -dict Enabled -int 0
-
-########################################################
-#DISABLES REMOTE MANAGEMENT
-########################################################
-echo " Disabling Remote Management"
-/usr/bin/sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -stop
-
-########################################################
-#DISABLES REMOTE LOGIN
-########################################################
-echo " Disabling Remote login"
-/usr/bin/sudo /usr/sbin/systemsetup -setremotelogin off
-
-########################################################
-#DISABLES FILE SHARING
-########################################################
-echo " Disabling File Sharing"
-/usr/bin/sudo /bin/launchctl disable system/com.apple.smbd
-
-########################################################
-#DISABLES SCREEN SHARING
-########################################################
-echo " Disabling Screen Sharing"
-/usr/bin/sudo /bin/launchctl disable system/com.apple.screensharing
+echo " Enabling Stealth mode"
+/usr/bin/sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 
 ########################################################
 #DISABLES AIRDROP
@@ -79,10 +66,106 @@ echo " Disabling Airplay"
 defaults write com.apple.controlcenter.plist AirplayRecieverEnabled -bool false
 
 ########################################################
+#  SETS AUTO DATE AND TIME ZONE
+########################################################
+echo " Setting auto date and time zone"
+/usr/sbin/systemsetup -settimezone France/Paris
+
+########################################################
+#DISABLES SCREEN SHARING
+########################################################
+echo " Disabling Screen Sharing"
+/usr/bin/sudo /bin/launchctl disable system/com.apple.screensharing
+
+########################################################
+#DISABLES FILE SHARING
+########################################################
+echo " Disabling File Sharing"
+/usr/bin/sudo /bin/launchctl disable system/com.apple.smbd
+
+########################################################
 #DISABLES PRINTER SHARING
 ########################################################
 echo " Disabling Printer sharing"
 /usr/bin/sudo /usr/sbin/cupsctl --no-share-printers
+
+########################################################
+#DISABLES REMOTE LOGIN
+########################################################
+echo " Disabling Remote login"
+/usr/bin/sudo /usr/sbin/systemsetup -setremotelogin off
+
+########################################################
+#DISABLES REMOTE MANAGEMENT
+########################################################
+echo " Disabling Remote Management"
+/usr/bin/sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -deactivate -stop
+
+########################################################
+#  DISABLES APPLE REMOTE EVENTS
+########################################################
+echo -e " Disable Apple remote events"
+/usr/bin/sudo /usr/sbin/systemsetup -setremoteappleevents off
+
+########################################################
+#DISABLES INTERNET SHARING
+########################################################
+echo " Disabling Internet sharing"
+usr/bin/sudo /usr/bin/defaults write /Library/Preferences/SystemConfiguration/com.apple.nat NAT -dict Enabled -int 0
+
+########################################################
+#DISABLES CONTENT CACHING
+########################################################
+echo " Disabling Content caching"
+/usr/bin/sudo /usr/bin/AssetCacheManagerUtil deactivate
+
+########################################################
+#DISABLES MEDIA SHARING
+########################################################
+echo " Disabling Media sharing"
+defaults write com.apple.amp.mediasharingd home-sharing-enabled -int 0
+
+########################################################
+#  DISABLES BLUETOOTH
+########################################################
+#echo " Disabling Blurtooth"
+#defaults write com.apple.Bluetooth PrefKeyServicesEnabled -bool false
+
+########################################################
+#  ENABLE TIME MACHINE 
+########################################################
+echo " Enabling time machine"
+sudo tmutil enable
+
+########################################################
+#  ENABLE TIME MACHINE BACKUPS
+########################################################
+echo " enabling time machine auto backups"
+defaults write /Library/Preferences/com.apple.TimeMachine.plist AutoBackup -bool true
+
+########################################################
+#  ENABLE WIFI STATUS IN MENU BAR
+########################################################
+echo " Enable wifi status in menu bar"
+defaults write com.apple.controlcenter.plist WiFi -int 2
+
+########################################################
+#  ENABLE BLUETOOTH STATUS IN MENU BAR
+########################################################
+echo " Enable Bluetooth status in menu bar"
+defaults write com.apple.controlcenter.plist Bluetooth -int 18
+
+########################################################
+#  DISABLES SIRI
+########################################################
+echo " Disabling Siri"
+defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
+
+
+
+
+
+
 
 ########################################################
 #DISABLES THE INFRARED RECIEVER
@@ -136,12 +219,6 @@ echo -e " Disable potential DNS leaks"
 defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 
 ########################################################
-#  DISABLES APPLE REMOTE EVENTS
-########################################################
-echo -e " Disable Apple remote events"
-/usr/bin/sudo /usr/sbin/systemsetup -setremoteappleevents off
-
-########################################################
 #  DISABLES APPLE REMOTE AGENT AND REMOVE ACCESS
 ########################################################
 echo -e " Disable Apple remote agent and remove access"
@@ -162,23 +239,10 @@ defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 defaults write com.apple.Safari.plist WebsiteSpecificSearchEnabled -bool NO
 
 ########################################################
-#  DISABLES SIRI
-########################################################
-echo " Disabling Siri"
-defaults write ~/Library/Preferences/com.apple.assistant.support.plist "Assistant Enabled" -int 0; killall -TERM Siri; killall -TERM cfpre$
-sleep 2
-
-########################################################
 #  DISABLES CAPTIVE PORTALS
 ########################################################
 echo " Disabling captive portals"
 defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
-
-########################################################
-#  DISABLES BLUETOOTH
-########################################################
-#echo " Disabling Blurtooth"
-#defaults write com.apple.Bluetooth PrefKeyServicesEnabled -bool false
 
 
 ########################################################################################################################
@@ -219,29 +283,10 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 ########################################################
-#  SETS THE FIREWALL
-########################################################
-echo " Enabling Firewall"
-/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
-/usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
-/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-
-########################################################
-#  SETS THE STEALTH MODE ON
-########################################################
-/usr/bin/sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
-
-########################################################
 #  SETS THE FIRMWARE PASSWORD
 ########################################################
 echo " Setting the firmware password"
 firmwarepasswd -setpasswd
-
-########################################################
-#  SETS AUTO DATE AND TIME ZONE
-########################################################
-echo " Setting auto date and time zone"
-/usr/sbin/systemsetup -settimezone France/Paris
 
 ########################################################
 #  REMOVE THE LIST OF USERS FROM THE LOGIN SCREEN
@@ -285,34 +330,10 @@ echo " Turning on file extensions which are hidden by default"
 defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
 
 ########################################################
-#ENABLE AUTOMATIC UPDATES
-########################################################
-echo " Enabling Scheduled updates"
-softwareupdate --schedule on
-defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
-defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true 
-
-########################################################
 #  ENABLE GATEKEEPER
 ########################################################
 spctl --master-enable
 echo " Gatekeeper is now enabled"
-
-
-
-########################################################
-#  ENABLE TIME MACHINE 
-########################################################
-echo " Enabling time machine"
-sudo tmutil enable
-
-########################################################
-#  ENABLE TIME MACHINE BACKUPS
-########################################################
-echo " enabling time machine auto backups"
-defaults write /Library/Preferences/com.apple.TimeMachine.plist AutoBackup -bool true
 
 ########################################################
 #  CHECK APP UPDATES EVERY DAY INSTEAD OF ONCE A WEEK
@@ -342,7 +363,7 @@ sed -i.bak 's/.*maxAuthTries.*/maxAuthTries 4/' /etc/ssh/sshd_config
 ########################################################
 #  SEND DO NOT TRACK HEADRE IN SAFARI
 ########################################################
-echo -e " Send 'Do Not Track' header in Safari"
+echo " Send 'Do Not Track' header in Safari"
 defaults write com.apple.safari SendDoNotTrackHTTPHeader -int 1
 
 
