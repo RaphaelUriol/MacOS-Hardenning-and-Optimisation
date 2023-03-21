@@ -76,6 +76,29 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 
 ### Logging and auditing
 
+- [x] Enable Security auditing
+- [ ] Ensure Security Auditing Flags For User-Attributable Events Are Configured Per Local Organizational Requirements (manually done)  
+- [ ] Ensure install.log Is Retained for 365 or More Days and No Maximum Size (manually done)  
+- [ ] Enables Security Auditing Retention (manually done)  
+- [x] Ensure Access to Audit Records Is Controlled   
+- [x] Enable Firewall Logging  
+- [ ] Configure Firewall login (manually done)  
+- [ ] Audit Software Inventory (manually done)
+
+### Network Configurations
+
+- [x] Disable Bonjour advertising services  
+- [x] Disable HTTP server
+- [X] Disable NFS server
+
+### System Access, Authentication and Authorization
+
+- [ ] Ensure Home Folders Are Secure (manually done for each user)
+- [x] Enable System Integrity Protection Status (SIP) 
+- [x] Enable Apple Mobile File Integrity (AMFI) 
+- [x] Enable Sealed System Volume (SSV) 
+
+
 
 
 
@@ -90,7 +113,6 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Disables apple remote agent and remove access
 - [x] Disables auto save to icloud for new documents
 - [x] Disables search data leaking in safari
-- [x] Disables siri
 - [x] Disables Captive Portal
 - [x] Prevents other applications from intercepting text typed in to terminal
 - [x] Prevents downloaded signed software from recieving incoming connections
