@@ -168,6 +168,11 @@ echo " Enabling Firewall"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 
 ########################################################
+#  SETS THE STEALTH MODE ON
+########################################################
+/usr/bin/sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+
+########################################################
 #  SETS THE FIRMWARE PASSWORD
 ########################################################
 echo " Setting the firmware password"
@@ -222,7 +227,7 @@ softwareupdate --schedule on
 defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
 defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
 defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true
+defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true 
 
 ########################################################
 #  ENABLE GATEKEEPER
