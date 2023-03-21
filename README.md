@@ -34,6 +34,7 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Prevents any action when inserting a picture cd  
 - [x] Prevents any action when inserting a video dvd  
 
+
 - [x] Disables Screen Sharing  
 - [x] Disables File Sharing  
 - [x] Disables Printer Sharing  
