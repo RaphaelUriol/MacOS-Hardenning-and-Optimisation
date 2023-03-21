@@ -333,6 +333,78 @@ defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser
 
 
 
+########################################################
+#  ENABLE SECURITY AUDITING
+########################################################
+echo " enable security auditing"
+launchctl load -w /System/Library/LaunchDaemons/com.apple.auditd.plist
+
+########################################################
+#  ENABLE SECURITY AUDITING
+########################################################
+echo "Ensure Access to Audit Records Is Controlled"
+chown -R root:wheel /etc/security/audit_control
+chmod -R o-rw /etc/security/audit_control
+chown -R root:wheel /var/audit/
+chmod -R o-rw /var/audit/
+
+########################################################
+#  FIREWALL LOGIN ENABLE AND CONFIGURED
+########################################################
+echo "Firewall Logging Is Enabled you should configure it"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+
+
+########################################################################################################################
+# Network Configurations
+########################################################################################################################
+
+
+########################################################
+#  DISABLE BONJOUR ADVERTISING SERVICES
+########################################################
+echo " Bonjour Advertising Services Is Disabled "
+defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
+
+########################################################
+#  DISABLE HTTP SERVER
+########################################################
+echo " Disable HTTP Server "
+launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
+
+########################################################
+#  DISABLE NFS SERVER
+########################################################
+echo " Disable NFS Server "
+launchctl disable system/com.apple.nfsd
+
+
+########################################################################################################################
+# System Access, Authentication and Authorization
+########################################################################################################################
+
+
+########################################################
+#  ENABLE SIP SYSTEM INTEGRITY PROTECTION
+########################################################
+echo " Enable SIP "
+csrutil enable
+
+########################################################
+#  ENABLE AMFI APPLE MOBILE FILE INTEGRITY
+########################################################
+echo " Enable AMFI "
+nvram boot-args=""
+
+########################################################
+#  ENABLE SSV SEALED SYSTEM VOLUME
+########################################################
+echo " Enable Sealed System Volume"
+csrutil authenticated-root status
+#IF NOT ENABLE THE SYSTEM IS CONSIDERED COMPROMISED AND A CLEAN INSTALL NEED TO BE DONE
+
+
+
 
 
 
