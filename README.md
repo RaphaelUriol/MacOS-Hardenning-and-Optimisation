@@ -6,6 +6,8 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 
 ### Disabling native Apple settings
 
+
+- [x] Disables Airdrop
 - [x] Disables the infrared reciever
 - [x] Disables guest login access
 - [x] Disables the file sharing daemon
