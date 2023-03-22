@@ -121,17 +121,15 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 ### Applications
 
 - [x] Turns on file extensions  
-- [ ] Ensure Protect Mail Activity in Mail Is Enabled (manually done)
-- [ ] Disable Automatic Opening of Safe Files in Safari (manually done)
-- [ ] Audit History and Remove History Items (manually done)
-- [ ] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled (manually done)
-- [ ] Ensure Prevent Cross-site Tracking in Safari Is Enabled (manually done)
-
-
-
-
-
-
+- [ ] Ensure Protect Mail Activity in Mail Is Enabled (manually done for specific user)
+- [ ] Disable Automatic Opening of Safe Files in Safari (manually done for specific user)
+- [ ] Audit History and Remove History Items (manually done for specific user)
+- [ ] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled (manually done for specific user)
+- [ ] Ensure Prevent Cross-site Tracking in Safari Is Enabled (manually done for specific user)
+- [ ] Audit Hide IP Address in Safari Setting (manually done for specific user)
+- [ ] Ensure Advertising Privacy Protection in Safari Is Enabled (manually done for specific user)
+- [ ] Ensure Show Full Website Address in Safari Is Enabled (manually done for specific user)
+- [ ] Ensure Secure Keyboard Entry Terminal.app Is Enabled (manually done for specific user)
 
 ### Other settings (not from CIS)
 
@@ -156,7 +154,6 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Remove harmfull softawres  
 - [x] Prohibits MAC OS X from creating temporary files on remote volumes  
 - [x] Turns off the icloud login prompt  
-
 - [x] Check app updates every day insteade of once a week  
 - [x] Restrict sudo to a single command  
 - [x] Limits the number of authentication attempts before disconnecting the client  
