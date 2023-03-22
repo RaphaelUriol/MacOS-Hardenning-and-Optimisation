@@ -512,9 +512,9 @@ echo " Turning on file extensions which are hidden by default"
 defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
 
 
-
-
-
+########################################################################################################################
+# OTHER SETTINGS
+########################################################################################################################
 
 
 ########################################################
