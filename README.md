@@ -7,9 +7,9 @@ This is a All in One script made for MacOs Ventura 13.2.1, that offers a selecti
 Many configurations and settings need to be running in sudo.
 
 #### Legend :
-Manually done : You need to do it manually following the CIS benchmark  
+Manually done : You need to do it manually following the CIS benchmark or you need to do it for each user
 Included      : the script contain the code to do it automatically but it was not relevant for my use so it is commented  
-Not included  : It can be done automatically but I couldn't do it, or you need to do it for each user
+Not included  : It can be done automatically but I couldn't do it
 
 ## Hardening (Organised according to CIS Benchmark)
 
