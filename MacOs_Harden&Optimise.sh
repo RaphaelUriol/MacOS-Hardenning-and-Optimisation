@@ -403,10 +403,113 @@ echo " Enable Sealed System Volume"
 csrutil authenticated-root status
 #IF NOT ENABLE THE SYSTEM IS CONSIDERED COMPROMISED AND A CLEAN INSTALL NEED TO BE DONE
 
+########################################################
+#  ENABLE APPROPRIATES PERMISSIONS FOR APPS
+########################################################
+echo " Ensure Appropriate Permissions Are Enabled for System Wide Applications"
+sudo IFS=$'\n'
+for apps in $( /usr/bin/find /Applications -iname "*\.app" -type d -perm -2
+); do
+/bin/chmod -R o-w "$apps"
+done
+
+########################################################
+#  ENSURE NO WORLDS WRITABLES FILES EXIST IN THE SYSTEM FOLDER
+########################################################
+echo " Ensure No World Writable Files Exist in the System Folder"
+sudo IFS=$'\n'
+for sysPermissions in $( /usr/bin/find /System/Volumes/Data/System -type d -
+perm -2 | /usr/bin/grep -v "Drop Box" ); do
+/bin/chmod -R o-w "$sysPermissions"
+done
+
+########################################################
+#  ENSURE NO WORLDS WRITABLES FILES EXIST IN THE LIBRARY FOLDER
+########################################################
+echo " Ensure No World Writable Files Exist in the Library Folder"
+sudo IFS=$'\n'
+for libPermissions in $( /usr/bin/find /System/Volumes/Data/Library -type d -
+perm -2 | /usr/bin/grep -v Caches | /usr/bin/grep -v /Preferences/Audio/Data
+); do
+/bin/chmod -R o-w "$libPermissions"
+done
+
+#######################################################
+#  ENSURE PASSWORD ACOUNT LMOCKOUT THRESHOLD IS CONFIGURED
+########################################################
+echo " Ensure Password Account Lockout Threshold Is Configured"
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "maxFailedLoginAttempts=5"
+
+#######################################################
+#  ENSURE PASSWORD MINIMUM LENGHT IS CONFIGURED
+#######################################################
+echo " Ensure Password Minimum Length Is Configured"
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "minChars=15"
+
+#######################################################
+#  ENSURE PASSWORD MUST CONTAIN ALPHBETIC CARACTERE
+#######################################################
+echo " Ensure Complex Password Must Contain Alphabetic Characters Is Configured"
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "requiresAlpha=1"
+
+#######################################################
+#  ENSURE PASSWORD MUST CONTAIN NUMERIC CARACTERE
+#######################################################
+echo " Ensure Complex Password Must Contain Numeric Character Is Configured"
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "requiresNumeric=2"
+
+#######################################################
+#  ENSURE PASSWORD MUST CONTAIN AT LEAST SPECIAL CARACTERE
+#######################################################
+echo " Ensure Complex Password Must Contain Special Character Is Configured "
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "requiresSymbol=1"
+
+#######################################################
+#  ENSURE PASSWORD MUST CONTAIN UPPERCASE AND LOWERCASE CARACTERE
+#######################################################
+echo " Ensure Complex Password Must Contain Uppercase and Lowercase Characters Is Configured "
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "requiresMixedCase=1"
+
+#######################################################
+#  ENSURE PASSWORD AGE IS CONFIGURED
+#######################################################
+echo " Ensure Password Age Is Configured "
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "maxMinutesUntilChangePassword=43200"
+
+#######################################################
+#  ENSURE PASSWORD HISTORY CONFIGURED
+#######################################################
+echo " Ensure Password History Is Configured "
+sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "usingHistory=15"
+
+#######################################################
+#  DISABLE USER ROOT
+#######################################################
+echo " Disable user root "
+sudo /usr/sbin/dsenableroot -d
+
+#######################################################
+#  DISABLE A USER LOGGING INTO ANOTHER USER ACTIV AND/OR LOCKED SESSION
+#######################################################
+echo " Disable a user logging into another user activ and/or locked session "
+sudo /usr/bin/security authorizationdb write system.login.screensaver use-login-window-ui
+
+#######################################################
+#  REMOVE GUEST HOME FOLDER
+#######################################################
+echo " remove guest home folder "
+sudo /bin/rm -R /Users/Guest
 
 
+########################################################################################################################
+# APPLICATIONS
+########################################################################################################################
 
-
+########################################################
+#  TURNS ON FILE EXTENSIONS
+########################################################
+echo " Turning on file extensions which are hidden by default"
+defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
 
 
 
@@ -550,12 +653,6 @@ echo " Turning off iCloud login prompt"
 defaults write /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 defaults write /System/Library/User\ Template/English/lproj/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "10.12"
-
-########################################################
-#  TURNS ON FILE EXTENSIONS
-########################################################
-echo " Turning on file extensions which are hidden by default"
-defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
 
 ########################################################
 #  CHECK APP UPDATES EVERY DAY INSTEAD OF ONCE A WEEK
