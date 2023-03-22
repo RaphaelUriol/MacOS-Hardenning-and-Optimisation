@@ -97,6 +97,41 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Enable System Integrity Protection Status (SIP) 
 - [x] Enable Apple Mobile File Integrity (AMFI) 
 - [x] Enable Sealed System Volume (SSV) 
+- [x] Ensure Appropriate Permissions Are Enabled for System Wide Applications 
+- [x] Ensure No World Writable Files Exist in the System Folder
+- [x] Ensure No World Writable Files Exist in the Library Folder
+- [x] Ensure Password Account Lockout Threshold Is Configured
+- [x] Ensure Password Minimum Length Is Configured
+- [x] Ensure Complex Password Must Contain Alphabetic Characters Is Configured 
+- [x] Ensure Complex Password Must Contain Numeric Character Is Configured 
+- [x] Ensure Complex Password Must Contain Special Character Is Configured 
+- [x] Ensure Complex Password Must Contain Uppercase and Lowercase Characters Is Configured 
+- [x] Ensure Password Age Is Configured 
+- [x] Ensure Password History Is Configured 
+- [ ] Ensure all user storage APFS volumes are encrypted (manually done)
+- [ ] Ensure all user storage CoreStorage volumes are encrypted (manually done)
+- [ ] Ensure the Sudo Timeout Period Is Set to Zero (manually done)
+- [ ] Ensure a Separate Timestamp Is Enabled for Each User/tty Combo (manually done)
+- [x] Ensure the "root" Account Is Disabled 
+- [ ] Ensure an Administrator Account Cannot Login to Another User's Active and Locked Session 
+- [ ] Ensure a Login Window Banner Exists (manually done)
+- [ ] Ensure Legacy EFI Is Valid and Updating (manually done)
+- [x] Ensure the Guest Home Folder Does Not Exist 
+
+### Applications
+
+- [x] Turns on file extensions  
+- [ ] Ensure Protect Mail Activity in Mail Is Enabled (manually done)
+- [ ] Disable Automatic Opening of Safe Files in Safari (manually done)
+- [ ] Audit History and Remove History Items (manually done)
+- [ ] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled (manually done)
+- [ ] Ensure Prevent Cross-site Tracking in Safari Is Enabled (manually done)
+
+
+
+
+
+
 
 ### Other settings (not from CIS)
 
@@ -121,7 +156,7 @@ Not included  : It can be done automatically but I couldn't do it, or you need t
 - [x] Remove harmfull softawres  
 - [x] Prohibits MAC OS X from creating temporary files on remote volumes  
 - [x] Turns off the icloud login prompt  
-- [x] Turns on file extensions  
+
 - [x] Check app updates every day insteade of once a week  
 - [x] Restrict sudo to a single command  
 - [x] Limits the number of authentication attempts before disconnecting the client  
