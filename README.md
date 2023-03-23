@@ -50,7 +50,7 @@ Not included  : It can be done automatically but I couldn't do it
 - [x] Show location service in menu bar  
 - [ ] Audit location service access (manually done)  
 - [x] Stop sending of diagnostic info to apple  
-- [ ] Ensure Limit Ad Tracking Is Enabled (not included)  
+- [X] Ensure Limit Ad Tracking Is Enabled  
 - [x] Enable gatekeeper  
 - [x] Enbles Filevault and set up a recovery key  
 - [ ] Audit Lockdown mode (manually done)  
@@ -118,18 +118,18 @@ Not included  : It can be done automatically but I couldn't do it
 - [ ] Ensure Legacy EFI Is Valid and Updating (manually done)
 - [x] Ensure the Guest Home Folder Does Not Exist 
 
-### Applications
+### Applications (need to be done for specific users most of the time)
 
 - [x] Turns on file extensions  
 - [ ] Ensure Protect Mail Activity in Mail Is Enabled (manually done for specific user)
-- [x] Disable Automatic Opening of Safe Files in Safari (manually done for specific user)
-- [x] Audit History and Remove History Items (manually done for specific user)
-- [x] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled (manually done for specific user)
-- [x] Ensure Prevent Cross-site Tracking in Safari Is Enabled (manually done for specific user)
-- [x] Audit Hide IP Address in Safari Setting (manually done for specific user)
-- [x] Ensure Advertising Privacy Protection in Safari Is Enabled (manually done for specific user)
-- [x] Ensure Show Full Website Address in Safari Is Enabled (manually done for specific user)
-- [x] Ensure Secure Keyboard Entry Terminal.app Is Enabled (manually done for specific user)
+- [x] Disable Automatic Opening of Safe Files in Safari 
+- [x] Audit History and Remove History Items
+- [x] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled 
+- [x] Ensure Prevent Cross-site Tracking in Safari Is Enabled 
+- [x] Audit Hide IP Address in Safari Setting 
+- [x] Ensure Advertising Privacy Protection in Safari Is Enabled 
+- [x] Ensure Show Full Website Address in Safari Is Enabled 
+- [x] Ensure Secure Keyboard Entry Terminal.app Is Enabled 
 
 ### Other settings (not from CIS)
 
