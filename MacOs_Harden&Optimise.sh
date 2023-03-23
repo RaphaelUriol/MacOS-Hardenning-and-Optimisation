@@ -11,6 +11,10 @@
 # For Hardening and optimisation MacOS Ventura 13.2.1
 
 
+echo "Please enter your username, it is needed for configurations"
+read usernamex
+echo $username
+
 ########################################################
 ########################################################
 #               ||
@@ -303,8 +307,8 @@ defaults write com.apple.loginwindow RetriesUntilHint -int 0
 ########################################################
 #  ENSURE USERS ACCOUNTS DO NOT HAVE PASSWORD HINT
 ########################################################
-#echo "Ensure Users' Accounts Do Not Have a Password Hint"
-#dscl . -list /Users hint . -delete /Users/firstuser hint
+echo "Ensure Users' Accounts Do Not Have a Password Hint"
+dscl . -list /Users hint . -delete /Users/$username hint
 
 ########################################################
 #  DISABLES GUEST LOGIN ACCESS
@@ -383,6 +387,13 @@ launchctl disable system/com.apple.nfsd
 # System Access, Authentication and Authorization
 ########################################################################################################################
 
+
+########################################################
+#  ENSURE PERSONAL FOLDERS ARE SAFE
+########################################################
+echo "Ensure personal folders are safe"
+sudo /bin/chmod -R og-rwx /Users/$username
+#sudo /bin/chmod -R og-rw /Users/<username> si on ne veut pas qu'il soit executable
 
 ########################################################
 #  ENABLE SIP SYSTEM INTEGRITY PROTECTION
@@ -510,6 +521,61 @@ sudo /bin/rm -R /Users/Guest
 ########################################################
 echo " Turning on file extensions which are hidden by default"
 defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool TRUE; killall -HUP Finder; killall -HUP cfprefsd
+
+########################################################
+#  DISABLE AUTO OPENING OF SAFE FILES ON SAFARI
+########################################################
+echo " Disabling auto opening of safe files on safari"
+sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari AutoOpenSafeDownloads -bool false
+
+########################################################
+#  DELETE HISTORY FILES
+########################################################
+echo " Deleting history files"
+sudo -u  $username /usr/bin/defaults write /Users/ $username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari HistoryAgeInDaysLimit -int 1
+sudo -u  $username /usr/bin/defaults write /Users/ $username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari HistoryAgeInDaysLimit -int 7
+sudo -u  $username /usr/bin/defaults write /Users/ $username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari HistoryAgeInDaysLimit -int 14
+sudo -u  $username /usr/bin/defaults write /Users/ $username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari HistoryAgeInDaysLimit -int 31
+sudo -u  $username /usr/bin/defaults write /Users/ $username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari HistoryAgeInDaysLimit -int 365
+sudo -u  $username /usr/bin/defaults write /Users/ $username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari HistoryAgeInDaysLimit -int 36500
+
+########################################################
+#  SETTING WARNING WHEN VISITING FRAUDULENT WEBSITE
+########################################################
+echo " Seting warning when visiting frauduelent websie"
+sudo -u $username /usr/bin/defaults read /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari WarnAboutFraudulentWebsites
+
+########################################################
+#  ENABLE SAFARI TO PREVENT CROSS SITE TRACKING
+########################################################
+echo " Enables safari to prevent cross site tracking"
+/usr/bin/sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari BlockStoragePolicy -int 2
+/usr/bin/sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari WebKitPreferences.storageBlockingPolicy -int 1
+/usr/bin/sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari WebKitStorageBlockingPolicy -int 1
+
+########################################################
+#  MASK IP IN SAFARI SETTINGS
+########################################################
+echo " Masks IP in safari settings"
+sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari WBSPrivacyProxyAvailabilityTraffic -int <130272/130276>
+
+########################################################
+#  ENABLE ADVERTISING POLICY RPOTECTION IN SAFARI
+########################################################
+echo " Enable advertising policy protection in safari"
+sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari WebKitPreferences.privateClickMeasurementEnabled -bool true
+
+########################################################
+#  ENABLE DISPLAY FULL WEB SITE ADRESS IN SAFARI
+########################################################
+echo " Displays full web site adress in safari"
+sudo -u $username /usr/bin/defaults write /Users/$username/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
+########################################################
+#  ENABLE SECURE KEYBOARD ENTRIES IN TERMINAL
+########################################################
+echo " Enable secure keyboard entries in Terminal"
+sudo -u firstuser /usr/bin/defaults write -app Terminal SecureKeyboardEntry -bool true
 
 
 ########################################################################################################################
