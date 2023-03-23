@@ -13,7 +13,7 @@
 
 echo "Please enter your username, it is needed for configurations"
 read usernamex
-echo $username
+echo "$username"
 
 ########################################################
 ########################################################
