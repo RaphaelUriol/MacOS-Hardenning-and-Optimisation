@@ -28,20 +28,36 @@ echo $username
 # Updates, Patches and additional Security Software
 ########################################################################################################################
 
-########################################################
-#ENABLE AUTOMATIC UPDATES
-########################################################
-echo " Enabling Scheduled updates"
-softwareupdate --schedule on
-defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticCheckEnabled -bool true
-defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
-defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true 
+# Enable all Apple-provided software updates
+sudo softwareupdate --schedule on
+
+# Enable auto-update
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true
+
+# Enable download new updates when available
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
+sudo defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bool true
+
+# Enable install of macOS updates
+sudo defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateRestartRequired -bool true
+
+# Enable install application updates from the App Store
+sudo defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdateAppMinorVersion -bool true
+
+# Enable install security responses and system files
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool true
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
+
+# Enable software update deferment for 30 days
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist DelayInterval -int 30
+
 
 
 ########################################################################################################################
 # System Settings
 ########################################################################################################################
+
 
 ########################################################
 #  SETS THE FIREWALL
@@ -227,6 +243,12 @@ defaults write /Library/Preferences/com.apple.locationmenu.plist ShowSystemServi
 echo " Stopping this machine from sending diagnostic info to Apple"
 defaults write /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist AutoSubmit -bool FALSE
 defaults write com.apple.CrashReporter DialogType none
+
+########################################################
+#  ENABLE LIMIT AD TRACKING
+########################################################
+echo " Enable limited ad tracking"
+sudo -u $username /usr/bin/defaults write /Users/$username/Library/Preferences/com.apple.Adlib.plistallowApplePersonalizedAdvertising -bool false
 
 ########################################################
 #  ENABLE GATEKEEPER
