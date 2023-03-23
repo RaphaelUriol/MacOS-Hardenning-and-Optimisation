@@ -15,7 +15,13 @@ Not included  : It can be done automatically but I couldn't do it
 
 ### Updates, Patches and additional Security Software
 
-- [x] Enable automatic updates (apps and system)
+- [x] Enable all Apple-provided software updates
+- [x] Enable auto-update
+- [x] Enable download new updates when available
+- [x] Enable install of macOS updates
+- [x] Enable install application updates from the App Store
+- [x] Enable install security responses and system files
+- [x] Enable software update deferment for 30 days
 
 ### System Settings
 
