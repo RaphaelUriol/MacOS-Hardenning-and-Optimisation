@@ -65,7 +65,7 @@ Not included  : It can be done automatically but I couldn't do it
 - [x] Enable custom login screen  
 - [x] Ensure Login Window Displays as Name and Password Is Enabled   
 - [x] Turns off password hints  
-- [ ] Ensure Users' Accounts Do Not Have a Password Hint (included)  
+- [x] Ensure Users' Accounts Do Not Have a Password Hint (included)  
 - [ ] Audit Touch ID and Wallet & Apple Pay Settings (manually done)  
 - [x] Disables guest login access  
 - [x] Ensure Guest Access to Shared Folders Is Disabled  
@@ -122,14 +122,14 @@ Not included  : It can be done automatically but I couldn't do it
 
 - [x] Turns on file extensions  
 - [ ] Ensure Protect Mail Activity in Mail Is Enabled (manually done for specific user)
-- [ ] Disable Automatic Opening of Safe Files in Safari (manually done for specific user)
-- [ ] Audit History and Remove History Items (manually done for specific user)
-- [ ] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled (manually done for specific user)
-- [ ] Ensure Prevent Cross-site Tracking in Safari Is Enabled (manually done for specific user)
-- [ ] Audit Hide IP Address in Safari Setting (manually done for specific user)
-- [ ] Ensure Advertising Privacy Protection in Safari Is Enabled (manually done for specific user)
-- [ ] Ensure Show Full Website Address in Safari Is Enabled (manually done for specific user)
-- [ ] Ensure Secure Keyboard Entry Terminal.app Is Enabled (manually done for specific user)
+- [x] Disable Automatic Opening of Safe Files in Safari (manually done for specific user)
+- [x] Audit History and Remove History Items (manually done for specific user)
+- [x] Ensure Warn When Visiting A Fraudulent Website in Safari Is Enabled (manually done for specific user)
+- [x] Ensure Prevent Cross-site Tracking in Safari Is Enabled (manually done for specific user)
+- [x] Audit Hide IP Address in Safari Setting (manually done for specific user)
+- [x] Ensure Advertising Privacy Protection in Safari Is Enabled (manually done for specific user)
+- [x] Ensure Show Full Website Address in Safari Is Enabled (manually done for specific user)
+- [x] Ensure Secure Keyboard Entry Terminal.app Is Enabled (manually done for specific user)
 
 ### Other settings (not from CIS)
 
